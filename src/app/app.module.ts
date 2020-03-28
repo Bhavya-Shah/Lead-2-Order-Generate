@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { FilterbarComponent } from './car/components/filterbar/filterbar.component';
 import { CarListComponent } from './car/components/car-list/car-list.component';
 import { CarDetailsComponent } from './car/components/car-details/car-details.component';
@@ -13,9 +15,9 @@ import { BrandItemComponent } from './car/components/filterbar/brand-list/brand-
 import { GearboxItemComponent } from './car/components/filterbar/gearbox-list/gearbox-item/gearbox-item.component';
 import { FuelItemComponent } from './car/components/filterbar/fuel-list/fuel-item/fuel-item.component';
 import { CarItemComponent } from './car/components/car-list/car-item/car-item.component';
-import { DemoComponent } from './demo/demo.component';
 import { CarFilterComponent } from './car/components/car-filter/car-filter.component';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,14 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
     GearboxItemComponent,
     FuelItemComponent,
     CarItemComponent,
-    DemoComponent,
     CarFilterComponent,
-    DropdownDirective
+    DropdownDirective,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,108 @@
+$background-car-1: url("../../assets/images/jpg/car-1.jpg")
+$background-car-2: url("../../assets/images/jpg/car-2.jpg")
+$background-car-3: url("../../assets/images/jpg/car-3.jpg")
+$background-car-4: url("../../assets/images/jpg/car-5.jpg")
+$background-color: #1b262c !important
+$hover-color: #3282b8 !important
+
+a:hover
+    color: $hover-color
+    transition: .3s
+
+.backgroundImage, .backgroundImage2, .backgroundImage3, .backgroundImage4
+    background-attachment: fixed
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+
+.backgroundImage
+    background-image: $background-car-1
+    height: 100vh
+    opacity: 0.9
+
+.caption
+    cursor: none
+    left: 0
+    top: 50%
+
+.caption h1
+    font-weight: 700
+    letter-spacing: 15px
+    text-shadow: 1px 1px 0 black, 2px 2px 0 black
+
+.headerBar
+    top: 0
+    z-index: 1
+
+// fa-icon color toggles between black and white
+.navbar fa-icon
+    color: white
+
+.nav-item>a
+    color: white
+
+#privateLease h2, #benefits, #developers
+    background-color: $background-color
+
+#privateLease, #benefits
+    padding: 80px 0px
+
+.backgroundImage2
+    background-image: $background-car-2
+    height: 60vh
+    opacity: 0.8
+
+.benefits
+    box-shadow: 10px 10px 8px black
+    border-radius: 5px
+
+.benefits, .downside
+    padding: 20px
+
+.backgroundImage3
+    background-image: $background-car-3
+    height: 60vh
+    opacity: 0.7    
+         
+.clients
+    background-color: $background-color
+
+.profilePic img
+    border-radius: 50%
+    // box-shadow: 0px 5px 10px
+    box-shadow: 0 2.8px 2.2px rgba(255, 255, 255, 0.034), 0 6.7px 5.3px rgba(255, 255, 255, 0.048), 0 12.5px 10px rgba(255, 255, 255, 0.06), 0 22.3px 17.9px rgba(255, 255, 255, 0.072), 0 41.8px 33.4px rgba(255, 255, 255, 0.086), 0 100px 80px rgba(255, 255, 255, 0.12)
+
+.backgroundImage4
+    background-image: $background-car-4
+    height: 60vh
+    opacity: 0.8    
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) 
+    .backgroundImage
+        height: 500px
+    .alignContent
+        justify-content: flex-start !important
+    .alignContent>nav
+        width: 100%
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) 
+    .backgroundImage
+        height: 500px
+    .alignContent
+        justify-content: flex-start !important
+    .alignContent>nav
+        width: 100%
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px)
+    .alignContent
+        justify-content: flex-start !important
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px)
+
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 2560px)

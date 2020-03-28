@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
 import { CarDetailsComponent } from './car/components/car-details/car-details.component';
-import { DemoComponent } from './demo/demo.component';
 import { CarFilterComponent } from './car/components/car-filter/car-filter.component';
-
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: DemoComponent},
+// add a default route
+{path: '', component: HomeComponent},
   { path: 'car',
     children: [
       { path: '', component: CarFilterComponent},
