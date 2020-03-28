@@ -1,0 +1,16 @@
+<!-- <input
+  #brandCheckbox
+  type="checkbox"
+  (change)="onChange()">
+  {{brand.name}} -->
+
+<label
+  class="btn btn-secondary"
+  #label
+  [ngClass]="{'active': toggle}">
+  <input
+    type="checkbox"
+    #brandCheckbox
+    (change)="onChange()">
+    {{brand.name}}
+</label>

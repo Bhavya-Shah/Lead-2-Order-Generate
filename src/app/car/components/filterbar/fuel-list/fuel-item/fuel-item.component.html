@@ -1,0 +1,16 @@
+<!-- <input
+  #fuelCheckbox
+  type="checkbox"
+  (change)="onChange()">
+  {{fuelType.fuelType}} -->
+
+<label
+  class="btn btn-secondary"
+  #label
+  [ngClass]="{'active': toggle}">
+  <input
+    type="checkbox"
+    #fuelCheckbox
+    (change)="onChange()">
+    {{fuelType.fuelType}}
+</label>

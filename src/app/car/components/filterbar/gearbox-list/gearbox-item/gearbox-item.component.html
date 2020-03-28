@@ -1,0 +1,16 @@
+<!-- <input
+  #gearboxCheckbox
+  type="checkbox"
+  (change)="onChange()">
+  {{gearbox.gearboxType}} -->
+
+<label
+  class="btn btn-secondary"
+  #label
+  [ngClass]="{'active': toggle}">
+  <input
+    type="checkbox"
+    #gearboxCheckbox
+    (change)="onChange()">
+    {{gearbox.gearboxType}}
+</label>
