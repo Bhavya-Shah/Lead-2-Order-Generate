@@ -16,5 +16,14 @@ export class LoginComponent implements OnInit {
   } 
 
   ngOnInit(): void { 
+    var playVideo = document.querySelector('video')
+    if(playVideo.pause){
+      playVideo.muted = true //Important
+      playVideo.play()
+    }
+    else {
+      playVideo.muted = true
+      playVideo.play()
+    }
   }
 }
