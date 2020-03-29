@@ -17,7 +17,7 @@ import { FuelItemComponent } from './car/components/filterbar/fuel-list/fuel-ite
 import { CarItemComponent } from './car/components/car-list/car-item/car-item.component';
 import { CarFilterComponent } from './car/components/car-filter/car-filter.component';
 import { DropdownDirective } from './shared/directives/dropdown.directive';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home-page/components/home/home.component';
 
 @NgModule({
   declarations: [

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CarDetailsComponent } from './car/components/car-details/car-details.component';
 import { CarFilterComponent } from './car/components/car-filter/car-filter.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home-page/components/home/home.component';
 
 const routes: Routes = [
 // add a default route
