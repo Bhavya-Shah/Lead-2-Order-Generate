@@ -1,0 +1,44 @@
+$left-side: #0f4c75
+$right-side: whitesmoke
+$hover-color: #3282b8
+$submit-color: #3282b8
+
+.leftside
+    padding: 0
+    overflow: hidden
+    background-color: $left-side
+    height: 100vh
+
+.rightside
+    padding: 0
+    overflow: hidden
+    background-color: $right-side
+    height: 100vh
+
+.nav-item>a
+    color: black
+
+.nav-item a:hover
+    color: $hover-color
+    transition: 0.3s
+
+.register:hover
+    border-bottom: 1px solid $hover-color
+
+.text-info
+    font-size: smaller
+
+.text-info:hover
+    text-decoration: none
+
+input[type=submit]
+    background-color: $submit-color
+
+@media (max-width: 575.98px)
+    .leftside
+        display: none
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) 
+    .leftside
+        display: none
