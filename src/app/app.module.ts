@@ -22,7 +22,7 @@ import { ForgotPasswordComponent } from './auth/components/forgot-password/forgo
 import { RegisterComponent } from './auth/components/register/register.component';
 import { PriceRangeListComponent } from './car/components/filterbar/price-range-list/price-range-list.component';
 import { PriceRangeItemComponent } from './car/components/filterbar/price-range-list/price-range-item/price-range-item.component';
-// import { FormsModule }   from '@angular/forms';
+import { FormsModule }   from '@angular/forms';
 
 
 @NgModule({
@@ -50,8 +50,8 @@ import { PriceRangeItemComponent } from './car/components/filterbar/price-range-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule,
-    // FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

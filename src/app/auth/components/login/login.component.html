@@ -26,7 +26,7 @@
                     <p>or&nbsp;<a [routerLink]="['/auth/register']" routerLinkActive="active" class="text-info">create an account</a></p>
                 </div>
                 <div class="col-12">
-                    <form (ngSubmit)="onSubmit()">
+                    <form #f="ngForm" (ngSubmit)="onSubmit()">
                         <div class="form-group position-relative">
                             <input type="email" class="form-control" name="email" id="email" placeholder="Email">
                             <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
