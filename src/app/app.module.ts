@@ -20,7 +20,7 @@ import { HomeComponent } from './home-page/components/home/home.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { ForgotPasswordComponent } from './auth/components/forgot-password/forgot-password.component';
 import { RegisterComponent } from './auth/components/register/register.component';
-import { FormsModule }   from '@angular/forms';
+// import { FormsModule }   from '@angular/forms';
 
 
 @NgModule({
@@ -47,7 +47,7 @@ import { FormsModule }   from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    // FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

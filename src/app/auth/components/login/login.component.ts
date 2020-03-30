@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faTimes, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   onSubmit(){
+    console.log("working")
   } 
 
   ngOnInit(): void { 
