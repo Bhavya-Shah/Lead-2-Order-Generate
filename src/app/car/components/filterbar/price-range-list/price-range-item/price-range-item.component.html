@@ -1,0 +1,10 @@
+<label
+  class="btn btn-secondary"
+  #label
+  [ngClass]="{'active': toggle}">
+  <input
+    type="checkbox"
+    #priceRangeCheckbox
+    (change)="onChange()">
+    {{priceRange.min}} - {{priceRange.max}}
+</label>

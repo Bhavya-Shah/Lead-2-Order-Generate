@@ -4,6 +4,7 @@ import { CarService } from '../../services/car.service';
 import { Brand } from '../../models/brand.model';
 import { Fuel } from '../../models/fuel.model';
 import { Gearbox } from '../../models/gearbox.model';
+import { PriceRange } from '../../models/price-range.model';
 
 @Component({
   selector: 'app-car-list',
@@ -17,6 +18,7 @@ export class CarListComponent implements OnInit {
   selectedBrands: Brand[] = [];
   selectedFuelTypes: Fuel[] = [];
   selectedGearboxTypes: Gearbox[] = [];
+  selectedPriceRanges: PriceRange[] = [];
 
   constructor(private carService: CarService) { }
 
@@ -47,6 +49,15 @@ export class CarListComponent implements OnInit {
           this.selectedGearboxTypes.push(res.gearboxType);
         this.carFilter();
     });
+
+    this.carService.changedPriceRange.subscribe(
+      (res :{priceRange: PriceRange, checkedToUnchecked: boolean}) => {
+        res.checkedToUnchecked ?
+          this.removeElementFromArray(this.selectedPriceRanges, res.priceRange) :
+          this.selectedPriceRanges.push(res.priceRange);
+        this.carFilter();
+      }
+    );
   }
 
   carFilter(){
@@ -54,7 +65,15 @@ export class CarListComponent implements OnInit {
       const fuelFilter = this.selectedFuelTypes.length > 0 ? this.selectedFuelTypes.includes(car.fuelbox) : true;
       const brandFilter = this.selectedBrands.length > 0 ? this.selectedBrands.includes(car.brand) : true;
       const gearboxFilter = this.selectedGearboxTypes.length > 0 ? this.selectedGearboxTypes.includes(car.gearbox) : true;
-      return fuelFilter && brandFilter && gearboxFilter;
+      var priceRangeFilter = false;
+      if(this.selectedPriceRanges.length > 0){
+        for(let priceRange of this.selectedPriceRanges){
+          if(car.price >= priceRange.min && car.price <= priceRange.max) priceRangeFilter = true;
+        }
+      } else {
+        priceRangeFilter = true;
+      }
+      return fuelFilter && brandFilter && gearboxFilter && priceRangeFilter;
     });
   }
 

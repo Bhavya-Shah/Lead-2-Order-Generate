@@ -3,6 +3,7 @@ import { Car } from '../models/car.model';
 import { Gearbox } from '../models/gearbox.model';
 import { Brand } from '../models/brand.model';
 import { Fuel } from '../models/fuel.model';
+import { PriceRange } from '../models/price-range.model';
 
 @Injectable({providedIn: 'root'})
 export class CarService{
@@ -10,6 +11,7 @@ export class CarService{
   changedBrand = new EventEmitter<{brand: Brand, checkedToUnchecked: boolean}>();
   changedFuelType = new EventEmitter<{fuelType: Fuel, checkedToUnchecked: boolean}>();
   changedGearboxType = new EventEmitter<{gearboxType: Gearbox, checkedToUnchecked: boolean}>();
+  changedPriceRange = new EventEmitter<{priceRange: PriceRange, checkedToUnchecked: boolean}>();
 
   gearboxTypes: Gearbox[] = [
     new Gearbox(1, 'Automatic'),
@@ -26,6 +28,11 @@ export class CarService{
     new Fuel(1, 'Petrol'),
     new Fuel(2, 'Diesel'),
     new Fuel(3, 'Electric')
+  ];
+  priceRanges: PriceRange[] = [
+    new PriceRange(40000, 44999),
+    new PriceRange(45000, 49999),
+    new PriceRange(50000, 59999)
   ];
   cars: Car[] = [
     new Car(
@@ -85,6 +92,10 @@ export class CarService{
 
   getGearboxTypes(){
     return this.gearboxTypes.slice();
+  }
+
+  getPriceRanges(){
+    return this.priceRanges.slice();
   }
 
   getCars(){
