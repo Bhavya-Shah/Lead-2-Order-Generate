@@ -20,6 +20,8 @@ import { HomeComponent } from './home-page/components/home/home.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { ForgotPasswordComponent } from './auth/components/forgot-password/forgot-password.component';
 import { RegisterComponent } from './auth/components/register/register.component';
+import { PriceRangeListComponent } from './car/components/filterbar/price-range-list/price-range-list.component';
+import { PriceRangeItemComponent } from './car/components/filterbar/price-range-list/price-range-item/price-range-item.component';
 // import { FormsModule }   from '@angular/forms';
 
 
@@ -41,7 +43,9 @@ import { RegisterComponent } from './auth/components/register/register.component
     HomeComponent,
     LoginComponent,
     ForgotPasswordComponent,
-    RegisterComponent
+    RegisterComponent,
+    PriceRangeListComponent,
+    PriceRangeItemComponent
   ],
   imports: [
     BrowserModule,
