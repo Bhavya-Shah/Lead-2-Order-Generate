@@ -1,73 +1,25 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { faBars, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass'],
+  styleUrls: ['./home.component.sass']
 })
+
 export class HomeComponent implements OnInit {
 
-  faBars = faBars;
-  faCheckCircle = faCheckCircle;
-  faTimesCircle = faTimesCircle;
+  faBars = faBars
+  faCheckCircle = faCheckCircle
+  faTimesCircle = faTimesCircle
 
-  navLinks = [];
-  carlogo = [];
-  developersPic = [];
-
-  @HostListener('window:scroll', ['$event'])
-  ChangeStyleOfHeaderBar() {
-
-    let anchor: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item>a')
-    let header = document.getElementById('headerBar')
-    let icon = document.getElementById('changeColor')
-    let logoinverse: HTMLElement = document.querySelector('#headerBar img')
-
-    if (window.pageYOffset > 250) {
-      //anchor
-      for (let index = 0; index < anchor.length; index++) {
-        // anchor[index].classList.add("text-dark")
-        anchor[index].style.color = "black"
-      }
-      //header
-      header.style.backgroundColor = "white"
-      header.classList.add("shadow-lg")
-      header.style.transition = "0.3s"
-      //icon
-      icon.style.color = "black"
-      //logoinverse
-      logoinverse.style.filter = "invert(1)"
-    }
-    else {
-      //anchor
-      for (let index = 0; index < anchor.length; index++) {
-        anchor[index].style.removeProperty("color")
-      }
-      //header
-      header.style.removeProperty("background-color")
-      header.classList.remove("shadow-lg")
-      header.style.transition = "0.3s"
-
-      //icon
-      icon.style.removeProperty("color")
-
-      //logoinverse
-      logoinverse.style.removeProperty("filter")
-      logoinverse.style.filter = "brightness(70%)"
-    }
-  }
-
-  constructor(private router: Router) { }
+  navLinks = []
+  carlogo = []
+  developersPic = []
+  flag = false 
   
-  gotoLogin(){
-    this.router.navigate(['/auth/login'])
-  }
+  constructor() { }
 
-  Route() {
-      document.getElementById('navbarNav').classList.remove("show")
-  }
   ngOnInit(): void {
     //links in navbar
     this.navLinks = [
@@ -91,5 +43,51 @@ export class HomeComponent implements OnInit {
       { src: "../../assets/images/jpg/dharan.jfif", alt: "Dharan Padhiyar", name: "Dharan Padhiyar" },
       { src: "../../assets/images/jpg/drashti bhimani.jfif", alt: "Drashti Bhimani", name: "Drashti Bhimani" }
     ]
+  }
+
+  targetNavbarNav() {
+    var btn = document.getElementById('navbarNav')
+    btn.classList.add("animated")
+    btn.classList.toggle("collapse")
+    btn.classList.toggle("fadeInLeft")
+  }
+
+  gotoId() {
+    document.getElementById('navbarNav').classList.add('collapse')
+  }
+
+  @HostListener('window:scroll')
+  ChangeStyleOfHeaderBar() {
+
+    var anchor: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item>a')
+    var header = document.getElementById('headerBar')
+    var icon = document.getElementById('changeColor')
+    var logoinverse: HTMLElement = document.querySelector('#headerBar img')
+
+    if (window.pageYOffset > 250) {
+      //anchor
+      anchor.forEach(tag=>tag.style.color = "black")
+      //header
+      header.style.backgroundColor = "white"
+      header.classList.add("shadow-lg")
+      header.style.transition = "all 800ms ease"
+      //icon
+      icon.style.color = "black"
+      //logoinverse
+      logoinverse.style.filter = "invert(1)"
+    }
+    else {
+      //anchor
+      anchor.forEach(tag=>tag.style.removeProperty("color"))
+      //header
+      header.style.removeProperty("background-color")
+      header.classList.remove("shadow-lg")
+      header.style.transition = "all 800ms ease"
+      //icon
+      icon.style.removeProperty("color")
+      //logoinverse
+      logoinverse.style.removeProperty("filter")
+      logoinverse.style.filter = "brightness(70%)"
+    }
   }
 }

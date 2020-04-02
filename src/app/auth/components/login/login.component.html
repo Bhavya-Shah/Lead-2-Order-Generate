@@ -1,66 +1,48 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 col-lg-8 leftside">
-            <!-- <iframe src="../../../assets/videos/video1.mp4" allowfullscreen style="width: 100%; height: 100%;"></iframe> -->
-            <video style="height: 100vh;" autoplay muted="muted" loop preload="auto">
-                    <source src="../../../assets/videos/video1.mp4" type="video/mp4">
+<div class="animated fadeIn">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-lg-8 leftside">
+                <video loop muted autoplay="auto" style="height: 100vh" class="animated slideInLeft slow">
+                <source src="../../../../assets/videos/video2.mp4" type="video/mp4" >
             </video>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center rightside">
-            <nav class="navbar navbar-expand justify-content-end fixed-top">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a [routerLink]="['/auth/register']" routerLinkActive="router-link-active" class="nav-link register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a [routerLink]="['/']" routerLinkActive="active" class="nav-link">
-                            <fa-icon [icon]="faTimes"></fa-icon>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center rightside" id="rightside">
+                <nav class="navbar navbar-expand justify-content-end fixed-top">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a [routerLink]="['/auth/register']" routerLinkActive="active" class="nav-link register">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a [routerLink]="['/']" routerLinkActive="active" class="nav-link">
+                                <fa-icon [icon]="faTimes"></fa-icon>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-            <div class="row mx-2">
-                <div class="col-12">
-                    <h2><strong>Login</strong></h2>
-                    <p>or&nbsp;<a [routerLink]="['/auth/register']" routerLinkActive="active" class="text-info">create an account</a></p>
-                </div>
-                <div class="col-12">
-                    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-                        <div class="form-group position-relative">
-                            <input
-                              type="email"
-                              class="form-control"
-                              name="email"
-                              id="email"
-                              placeholder="Email"
-                              ngModel
-                              email
-                              required>
-                            <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
-                        </div>
-                        <div class="form-group position-relative">
-                            <input
-                              type="password"
-                              class="form-control position-relative"
-                              name="password"
-                              id="password"
-                              placeholder="Password"
-                              ngModel
-                              required>
-                            <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
-                        </div>
-                        <div class="from-group">
-                            <input
-                              type="submit"
-                              value="Login"
-                              class="btn btn-block text-white"
-                              [disabled]="!loginForm.valid">
-                        </div>
-                        <div class="form-group">
-                            <a [routerLink]="['/auth/forgot-password']" routerLinkActive="active" class="text-info">Forgot your password?</a>
-                        </div>
-                    </form>
+                <div class="row mx-2">
+                    <div class="col-12">
+                        <h2><strong>Login</strong></h2>
+                        <p>or&nbsp;<a [routerLink]="['/auth/register']" routerLinkActive="active">create an account</a></p>
+                    </div>
+                    <div class="col-12">
+                        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+                            <div class="form-group position-relative">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" ngModel email required>
+                                <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
+                            </div>
+                            <div class="form-group position-relative">
+                                <input type="password" class="form-control position-relative" name="password" id="password" placeholder="Password" ngModel required>
+                                <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
+                            </div>
+                            <div class="from-group">
+                                <input type="submit" value="Login" class="btn btn-block text-white" [disabled]="!loginForm.valid">
+                            </div>
+                            <div class="form-group">
+                                <a [routerLink]="['/auth/forgot-password']" routerLinkActive="active">Forgot your password?</a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

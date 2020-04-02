@@ -12,18 +12,25 @@ $submit-color: #3282b8
 .rightside
     padding: 0
     overflow: hidden
+    // position: relative
     background-color: $right-side
     height: 100vh
 
 .nav-item>a
-    color: black
+    color: black 
 
 .nav-item a:hover
     color: $hover-color
-    transition: 0.3s
+    transition: all 300ms ease
 
 .register:hover
     border-bottom: 1px solid $hover-color
+
+div>h2, div>p 
+    color: black
+
+p>a, form a
+    color: #17A2B8
 
 .text-info
     font-size: smaller
@@ -38,7 +45,33 @@ input[type=submit]
     .leftside
         display: none
 
+    // .rightside
+    //     background-color: transparent
+    
+    // .nav-item>a
+    //     color: white
+    
+    // div>h2, div>p 
+    //     color: white
+    
+    // p>a, form a
+    //     // background-color: black,
+    //     color: #17A2B8
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) 
     .leftside
-        display: none
+        display: none    
+
+    // .rightside
+    //     background-color: transparent
+    
+    // .nav-item>a
+    //     color: white
+    
+    // div>h2, div>p 
+    //     color: white
+  
+    // p>a, form a
+    //     // background-color: black
+    //     color: #17A2B8
