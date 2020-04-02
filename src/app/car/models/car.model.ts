@@ -4,12 +4,14 @@ import { Gearbox } from './gearbox.model';
 
 export class Car{
   constructor(
-    public id: number,
-    public model: string,
-    public name: string,
-    public brand: Brand,
-    public fuelbox: Fuel,
-    public gearbox: Gearbox,
-    public price: number
+    public CarId: number,
+    public Carname: string,
+    public Brand: Brand,
+    public Fuelbox: Fuel,
+    public Gearbox: Gearbox,
+    public Model: string,
+    public Color:string,
+    public Price: number,
+    public CO2Emission
   ){}
 }

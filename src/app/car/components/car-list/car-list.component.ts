@@ -5,6 +5,7 @@ import { Brand } from '../../models/brand.model';
 import { Fuel } from '../../models/fuel.model';
 import { Gearbox } from '../../models/gearbox.model';
 import { PriceRange } from '../../models/price-range.model';
+import { DataManagementService } from 'src/app/shared/services/data-management.service';
 
 @Component({
   selector: 'app-car-list',
@@ -13,17 +14,19 @@ import { PriceRange } from '../../models/price-range.model';
 })
 export class CarListComponent implements OnInit {
 
-  cars: Car[];
+  cars: Car[] = [];
   filterdCars: Car[] = [];
   selectedBrands: Brand[] = [];
   selectedFuelTypes: Fuel[] = [];
   selectedGearboxTypes: Gearbox[] = [];
   selectedPriceRanges: PriceRange[] = [];
 
-  constructor(private carService: CarService) { }
+  constructor(private carService: CarService,
+              private dmService: DataManagementService) { }
 
   ngOnInit(): void {
     this.cars = this.carService.getCars();
+    // this.dmService.getCarData();
     this.filterdCars = this.cars;
 
     this.carService.changedBrand.subscribe(
@@ -62,13 +65,13 @@ export class CarListComponent implements OnInit {
 
   carFilter(){
     this.filterdCars = this.cars.filter(car => {
-      const fuelFilter = this.selectedFuelTypes.length > 0 ? this.selectedFuelTypes.includes(car.fuelbox) : true;
-      const brandFilter = this.selectedBrands.length > 0 ? this.selectedBrands.includes(car.brand) : true;
-      const gearboxFilter = this.selectedGearboxTypes.length > 0 ? this.selectedGearboxTypes.includes(car.gearbox) : true;
+      const fuelFilter = this.selectedFuelTypes.length > 0 ? this.selectedFuelTypes.includes(car.Fuelbox) : true;
+      const brandFilter = this.selectedBrands.length > 0 ? this.selectedBrands.includes(car.Brand) : true;
+      const gearboxFilter = this.selectedGearboxTypes.length > 0 ? this.selectedGearboxTypes.includes(car.Gearbox) : true;
       var priceRangeFilter = false;
       if(this.selectedPriceRanges.length > 0){
         for(let priceRange of this.selectedPriceRanges){
-          if(car.price >= priceRange.min && car.price <= priceRange.max) priceRangeFilter = true;
+          if(car.Price >= priceRange.min && car.Price <= priceRange.max) priceRangeFilter = true;
         }
       } else {
         priceRangeFilter = true;

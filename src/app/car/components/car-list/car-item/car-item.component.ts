@@ -15,6 +15,6 @@ export class CarItemComponent implements OnInit {
   }
 
   getImage(){
-    return "../../../../assets/images/cars/"+this.car.id+'.jpg';
+    return "../../../../assets/images/cars/"+this.car.CarId+'.jpg';
   }
 }

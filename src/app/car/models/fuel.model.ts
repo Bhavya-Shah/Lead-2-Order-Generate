@@ -1,6 +1,6 @@
 export class Fuel{
   constructor(
-    public id: number,
-    public fuelType: string
+    public FuelId: number,
+    public FuelType: string
   ){}
 }

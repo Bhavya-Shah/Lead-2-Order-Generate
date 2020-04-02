@@ -1,6 +1,6 @@
 export class Gearbox{
   constructor(
-    public id: number,
-    public gearboxType: string
+    public GearboxId: number,
+    public GearboxType: string
   ){}
 }

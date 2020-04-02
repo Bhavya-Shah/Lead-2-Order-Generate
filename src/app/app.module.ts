@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule }   from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +24,6 @@ import { ForgotPasswordComponent } from './auth/components/forgot-password/forgo
 import { RegisterComponent } from './auth/components/register/register.component';
 import { PriceRangeListComponent } from './car/components/filterbar/price-range-list/price-range-list.component';
 import { PriceRangeItemComponent } from './car/components/filterbar/price-range-list/price-range-item/price-range-item.component';
-import { FormsModule }   from '@angular/forms';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { FormsModule }   from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

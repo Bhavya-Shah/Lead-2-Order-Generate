@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataManagementService } from 'src/app/shared/services/data-management.service';
 
 @Component({
   selector: 'app-car-filter',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarFilterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dmService: DataManagementService) { }
 
   ngOnInit(): void {
+    this.dmService.getCarData();
   }
 
 }
