@@ -4,18 +4,20 @@ import { faBars, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-sv
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.sass'],
+  styleUrls: ['./home.component.sass']
 })
+
 export class HomeComponent implements OnInit {
 
-  faBars = faBars;
-  faCheckCircle = faCheckCircle;
-  faTimesCircle = faTimesCircle;
+  faBars = faBars
+  faCheckCircle = faCheckCircle
+  faTimesCircle = faTimesCircle
 
-  navLinks = [];
-  carlogo = [];
-  developersPic = [];
-
+  navLinks = []
+  carlogo = []
+  developersPic = []
+  flag = false 
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -43,27 +45,32 @@ export class HomeComponent implements OnInit {
     ]
   }
 
-  Route() {
-    document.getElementById('navbarNav').classList.remove("show")
+  targetNavbarNav() {
+    var btn = document.getElementById('navbarNav')
+    btn.classList.add("animated")
+    btn.classList.toggle("collapse")
+    btn.classList.toggle("fadeInLeft")
   }
-  
-  @HostListener('window:scroll', ['$event'])
+
+  gotoId() {
+    document.getElementById('navbarNav').classList.add('collapse')
+  }
+
+  @HostListener('window:scroll')
   ChangeStyleOfHeaderBar() {
 
-    let anchor: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item>a')
-    let header = document.getElementById('headerBar')
-    let icon = document.getElementById('changeColor')
-    let logoinverse: HTMLElement = document.querySelector('#headerBar img')
+    var anchor: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item>a')
+    var header = document.getElementById('headerBar')
+    var icon = document.getElementById('changeColor')
+    var logoinverse: HTMLElement = document.querySelector('#headerBar img')
 
     if (window.pageYOffset > 250) {
       //anchor
-      for (let index = 0; index < anchor.length; index++) {
-        anchor[index].style.color = "black"
-      }
+      anchor.forEach(tag=>tag.style.color = "black")
       //header
       header.style.backgroundColor = "white"
       header.classList.add("shadow-lg")
-      header.style.transition = "all 300ms ease"
+      header.style.transition = "all 800ms ease"
       //icon
       icon.style.color = "black"
       //logoinverse
@@ -71,17 +78,13 @@ export class HomeComponent implements OnInit {
     }
     else {
       //anchor
-      for (let index = 0; index < anchor.length; index++) {
-        anchor[index].style.removeProperty("color")
-      }
+      anchor.forEach(tag=>tag.style.removeProperty("color"))
       //header
       header.style.removeProperty("background-color")
       header.classList.remove("shadow-lg")
-      header.style.transition = "all 250ms ease"
-
+      header.style.transition = "all 800ms ease"
       //icon
       icon.style.removeProperty("color")
-
       //logoinverse
       logoinverse.style.removeProperty("filter")
       logoinverse.style.filter = "brightness(70%)"

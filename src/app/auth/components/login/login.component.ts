@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { faTimes, faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 
@@ -7,15 +7,19 @@ import { NgForm } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   faTimes = faTimes
   faExclamationCircle = faExclamationCircle;
   playVideo: HTMLVideoElement
+  
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
     this.playVideo = document.querySelector('video')
-    if(this.playVideo.pause){
+    if (this.playVideo.pause || this.playVideo.readyState == 4) {
       this.playVideo.muted = true // important
       this.playVideo.play()
     }
