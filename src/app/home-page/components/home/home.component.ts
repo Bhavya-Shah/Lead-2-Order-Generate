@@ -1,6 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { faBars, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,57 +16,8 @@ export class HomeComponent implements OnInit {
   carlogo = [];
   developersPic = [];
 
-  @HostListener('window:scroll', ['$event'])
-  ChangeStyleOfHeaderBar() {
+  constructor() { }
 
-    let anchor: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item>a')
-    let header = document.getElementById('headerBar')
-    let icon = document.getElementById('changeColor')
-    let logoinverse: HTMLElement = document.querySelector('#headerBar img')
-
-    if (window.pageYOffset > 250) {
-      //anchor
-      for (let index = 0; index < anchor.length; index++) {
-        // anchor[index].classList.add("text-dark")
-        anchor[index].style.color = "black"
-      }
-      //header
-      header.style.backgroundColor = "white"
-      header.classList.add("shadow-lg")
-      header.style.transition = "0.3s"
-      //icon
-      icon.style.color = "black"
-      //logoinverse
-      logoinverse.style.filter = "invert(1)"
-    }
-    else {
-      //anchor
-      for (let index = 0; index < anchor.length; index++) {
-        anchor[index].style.removeProperty("color")
-      }
-      //header
-      header.style.removeProperty("background-color")
-      header.classList.remove("shadow-lg")
-      header.style.transition = "0.3s"
-
-      //icon
-      icon.style.removeProperty("color")
-
-      //logoinverse
-      logoinverse.style.removeProperty("filter")
-      logoinverse.style.filter = "brightness(70%)"
-    }
-  }
-
-  constructor(private router: Router) { }
-  
-  gotoLogin(){
-    this.router.navigate(['/auth/login'])
-  }
-
-  Route() {
-      document.getElementById('navbarNav').classList.remove("show")
-  }
   ngOnInit(): void {
     //links in navbar
     this.navLinks = [
@@ -91,5 +41,50 @@ export class HomeComponent implements OnInit {
       { src: "../../assets/images/jpg/dharan.jfif", alt: "Dharan Padhiyar", name: "Dharan Padhiyar" },
       { src: "../../assets/images/jpg/drashti bhimani.jfif", alt: "Drashti Bhimani", name: "Drashti Bhimani" }
     ]
+  }
+
+  Route() {
+    document.getElementById('navbarNav').classList.remove("show")
+  }
+  
+  @HostListener('window:scroll', ['$event'])
+  ChangeStyleOfHeaderBar() {
+
+    let anchor: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item>a')
+    let header = document.getElementById('headerBar')
+    let icon = document.getElementById('changeColor')
+    let logoinverse: HTMLElement = document.querySelector('#headerBar img')
+
+    if (window.pageYOffset > 250) {
+      //anchor
+      for (let index = 0; index < anchor.length; index++) {
+        anchor[index].style.color = "black"
+      }
+      //header
+      header.style.backgroundColor = "white"
+      header.classList.add("shadow-lg")
+      header.style.transition = "all 300ms ease"
+      //icon
+      icon.style.color = "black"
+      //logoinverse
+      logoinverse.style.filter = "invert(1)"
+    }
+    else {
+      //anchor
+      for (let index = 0; index < anchor.length; index++) {
+        anchor[index].style.removeProperty("color")
+      }
+      //header
+      header.style.removeProperty("background-color")
+      header.classList.remove("shadow-lg")
+      header.style.transition = "all 250ms ease"
+
+      //icon
+      icon.style.removeProperty("color")
+
+      //logoinverse
+      logoinverse.style.removeProperty("filter")
+      logoinverse.style.filter = "brightness(70%)"
+    }
   }
 }

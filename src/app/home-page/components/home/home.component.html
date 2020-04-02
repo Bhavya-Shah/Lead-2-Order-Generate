@@ -1,4 +1,4 @@
-<div class="backgroundImage" id="#">
+<div class="backgroundImage position-relative" id="#">
     <div class=" text-center w-100 position-absolute caption">
         <h1 class="text-white">L2OG</h1>
     </div>
@@ -26,7 +26,7 @@
                             <li class="nav-item" *ngFor="let navlinks of navLinks">
                                 <a *ngIf="navlinks.id != 'login'; else elseBlock" class="nav-link px-lg-4" href="{{navlinks.href}}" id="{{navlinks.id}}" (click)="Route()">{{navlinks.innerHTML}}</a>
                                 <ng-template #elseBlock>
-                                    <a class="nav-link px-lg-4" (click)="gotoLogin()" id="{{navlinks.id}}" style="cursor: pointer">{{navlinks.innerHTML}}</a>
+                                    <a class="nav-link px-lg-4" [routerLink]="['/auth/login']" routerLinkActive="active" id="{{navlinks.id}}" style="cursor: pointer">{{navlinks.innerHTML}}</a>
                                 </ng-template>
                             </li>
                         </ul>

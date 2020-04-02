@@ -9,10 +9,10 @@ import { ForgotPasswordComponent } from './auth/components/forgot-password/forgo
 
 const routes: Routes = [
 // add a default route
-{path: '', component: HomeComponent},
+{path: '', component: HomeComponent, data: { animation: 'home' }},
 {path: 'auth', children: [
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent, data : {animation: 'login'}},
+  {path: 'register', component: RegisterComponent, data : {animation: 'register'}},
   {path: 'forgot-password', component: ForgotPasswordComponent}
 ]},
   { path: 'car',

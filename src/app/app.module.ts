@@ -23,7 +23,7 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { PriceRangeListComponent } from './car/components/filterbar/price-range-list/price-range-list.component';
 import { PriceRangeItemComponent } from './car/components/filterbar/price-range-list/price-range-item/price-range-item.component';
 import { FormsModule }   from '@angular/forms';
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,8 +51,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
