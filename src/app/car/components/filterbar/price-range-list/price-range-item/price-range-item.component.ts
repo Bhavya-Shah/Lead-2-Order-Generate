@@ -15,7 +15,7 @@ export class PriceRangeItemComponent{
 
   onChange(){
     this.toggle = !this.toggle;
-    this.carService.changedPriceRange.emit({
+    this.carService.changedPriceRange.next({
       priceRange: this.priceRange,
       checkedToUnchecked: !this.priceRangeCheckbox.nativeElement.checked
     });

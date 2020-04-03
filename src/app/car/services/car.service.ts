@@ -1,4 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import {Subject} from 'rxjs';
+
 import { Car } from '../models/car.model';
 import { Gearbox } from '../models/gearbox.model';
 import { Brand } from '../models/brand.model';
@@ -8,36 +10,43 @@ import { PriceRange } from '../models/price-range.model';
 @Injectable({providedIn: 'root'})
 export class CarService{
 
-  changedBrand = new EventEmitter<{brand: Brand, checkedToUnchecked: boolean}>();
-  changedFuelType = new EventEmitter<{fuelType: Fuel, checkedToUnchecked: boolean}>();
-  changedGearboxType = new EventEmitter<{gearboxType: Gearbox, checkedToUnchecked: boolean}>();
-  changedPriceRange = new EventEmitter<{priceRange: PriceRange, checkedToUnchecked: boolean}>();
+  changedBrand = new Subject<{brand: Brand, checkedToUnchecked: boolean}>();
+  changedFuelType = new Subject<{fuelType: Fuel, checkedToUnchecked: boolean}>();
+  changedGearboxType = new Subject<{gearboxType: Gearbox, checkedToUnchecked: boolean}>();
+  changedPriceRange = new Subject<{priceRange: PriceRange, checkedToUnchecked: boolean}>();
 
-  gearboxTypes: Gearbox[];
+  BrandsChanged = new Subject<Brand[]>();
+  GearboxTypesChanged = new Subject<Gearbox[]>();
+  FuelTypesChanged = new Subject<Fuel[]>();
+  PriceRangesChanged = new Subject<PriceRange[]>();
+  CarsChanged = new Subject<Car[]>();
+
+  gearboxTypes: Gearbox[] = [];
   // gearboxTypes: Gearbox[] = [
   //   new Gearbox(1, 'Automatic'),
   //   new Gearbox(2, 'Semi-Automatic'),
   //   new Gearbox(3, 'Manual')
   // ];
-  brands: Brand[];
+  brands: Brand[] = [];
   // brands: Brand[] = [
   //   new Brand(1, 'Tesla'),
   //   new Brand(2, 'Ford'),
   //   new Brand(3, 'Audi'),
   //   new Brand(4, 'BMW')
   // ];
-  fuelTypes: Fuel[];
+  fuelTypes: Fuel[] = [];
   // fuelTypes: Fuel[] = [
   //   new Fuel(1, 'Petrol'),
   //   new Fuel(2, 'Diesel'),
   //   new Fuel(3, 'Electric')
   // ];
-  priceRanges: PriceRange[] = [
-    new PriceRange(40000, 44999),
-    new PriceRange(45000, 49999),
-    new PriceRange(50000, 59999)
-  ];
-  cars: Car[];
+  priceRanges: PriceRange[] = [];
+  // priceRanges: PriceRange[] = [
+  //   new PriceRange(40000, 44999),
+  //   new PriceRange(45000, 49999),
+  //   new PriceRange(50000, 59999)
+  // ];
+  cars: Car[] = [];
   // cars: Car[] = [
   //   new Car(
   //     1,
@@ -86,6 +95,19 @@ export class CarService{
   //   )
   // ];
 
+  setData(cars: Car[], brands: Brand[], fuelTypes: Fuel[], gearboxTypes: Gearbox[], priceRanges: PriceRange[]){
+    this.brands = brands;
+    this.BrandsChanged.next(this.brands);
+    this.fuelTypes = fuelTypes;
+    this.FuelTypesChanged.next(this.fuelTypes);
+    this.gearboxTypes = gearboxTypes;
+    this.GearboxTypesChanged.next(this.gearboxTypes);
+    this.priceRanges = priceRanges;
+    this.PriceRangesChanged.next(this.priceRanges);
+    this.cars = cars;
+    this.CarsChanged.next(this.cars);
+  }
+
   getBrands(){
     return this.brands.slice();
   }
@@ -116,4 +138,5 @@ export class CarService{
     });
     return car;
   }
+
 }

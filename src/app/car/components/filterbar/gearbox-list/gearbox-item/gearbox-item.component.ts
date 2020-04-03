@@ -20,7 +20,7 @@ export class GearboxItemComponent implements OnInit {
 
   onChange(){
     this.toggle = !this.toggle;
-    this.carService.changedGearboxType.emit({
+    this.carService.changedGearboxType.next({
       gearboxType: this.gearbox,
       checkedToUnchecked: !this.gearboxCheckbox.nativeElement.checked
     });

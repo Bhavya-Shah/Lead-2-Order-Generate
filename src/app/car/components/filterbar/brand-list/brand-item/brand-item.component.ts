@@ -20,7 +20,7 @@ export class BrandItemComponent implements OnInit {
 
   onChange(){
     this.toggle = !this.toggle;
-    this.carService.changedBrand.emit({
+    this.carService.changedBrand.next({
       brand: this.brand,
       checkedToUnchecked: !this.brandCheckbox.nativeElement.checked
     });

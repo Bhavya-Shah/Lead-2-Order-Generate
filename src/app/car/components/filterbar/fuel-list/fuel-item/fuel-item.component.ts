@@ -20,7 +20,7 @@ export class FuelItemComponent implements OnInit {
 
   onChange(){
     this.toggle = !this.toggle;
-    this.carService.changedFuelType.emit({
+    this.carService.changedFuelType.next({
       fuelType: this.fuelType,
       checkedToUnchecked: !this.fuelCheckbox.nativeElement.checked
     });

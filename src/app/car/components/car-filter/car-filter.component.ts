@@ -11,7 +11,7 @@ export class CarFilterComponent implements OnInit {
   constructor(private dmService: DataManagementService) { }
 
   ngOnInit(): void {
-    this.dmService.getCarData();
+    this.dmService.getCarData().subscribe();
   }
 
 }

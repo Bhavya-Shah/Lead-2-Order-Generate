@@ -7,11 +7,11 @@ export class Car{
     public CarId: number,
     public Carname: string,
     public Brand: Brand,
-    public Fuelbox: Fuel,
+    public Fuel: Fuel,
     public Gearbox: Gearbox,
     public Model: string,
-    public Color:string,
+    public Color: string,
     public Price: number,
-    public CO2Emission
+    public CO2Emission: number
   ){}
 }
