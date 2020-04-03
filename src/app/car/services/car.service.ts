@@ -21,6 +21,8 @@ export class CarService{
   PriceRangesChanged = new Subject<PriceRange[]>();
   CarsChanged = new Subject<Car[]>();
 
+  resetAllCheckbox = new Subject();
+
   gearboxTypes: Gearbox[] = [];
   // gearboxTypes: Gearbox[] = [
   //   new Gearbox(1, 'Automatic'),

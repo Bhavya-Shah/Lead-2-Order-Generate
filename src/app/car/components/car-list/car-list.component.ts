@@ -25,6 +25,7 @@ export class CarListComponent implements OnInit, OnDestroy {
   fuelTypeCheckboxSub: Subscription;
   gearboxTypeCheckboxSub: Subscription;
   priceRangeCheckboxSub: Subscription;
+  resetFilterSub: Subscription;
 
   constructor(private carService: CarService) {}
 
@@ -79,6 +80,14 @@ export class CarListComponent implements OnInit, OnDestroy {
         this.carFilter();
       }
     );
+
+    this.resetFilterSub = this.carService.resetAllCheckbox.subscribe(() => {
+      this.filterdCars = this.cars;
+      this.selectedBrands = [];
+      this.selectedFuelTypes = [];
+      this.selectedGearboxTypes = [];
+      this.selectedPriceRanges = [];
+    });
   }
 
   carFilter() {
@@ -130,5 +139,6 @@ export class CarListComponent implements OnInit, OnDestroy {
     this.fuelTypeCheckboxSub.unsubscribe();
     this.gearboxTypeCheckboxSub.unsubscribe();
     this.priceRangeCheckboxSub.unsubscribe();
+    this.resetFilterSub.unsubscribe();
   }
 }

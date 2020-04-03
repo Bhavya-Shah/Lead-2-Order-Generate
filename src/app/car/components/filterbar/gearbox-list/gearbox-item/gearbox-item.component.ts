@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import {Subscription} from 'rxjs';
 import { Gearbox } from 'src/app/car/models/gearbox.model';
 import { CarService } from 'src/app/car/services/car.service';
 
@@ -7,15 +8,20 @@ import { CarService } from 'src/app/car/services/car.service';
   templateUrl: './gearbox-item.component.html',
   styleUrls: ['./gearbox-item.component.sass']
 })
-export class GearboxItemComponent implements OnInit {
+export class GearboxItemComponent implements OnInit, OnDestroy {
 
   toggle: boolean = false;
+  resetCheckboxSub: Subscription;
   @Input('gearbox-item') gearbox: Gearbox;
   @ViewChild('gearboxCheckbox') gearboxCheckbox: ElementRef;
 
   constructor(private carService: CarService) { }
 
   ngOnInit(): void {
+    this.resetCheckboxSub = this.carService.resetAllCheckbox.subscribe(() => {
+      this.toggle = false;
+      this.gearboxCheckbox.nativeElement.checked = false;
+    });
   }
 
   onChange(){
@@ -24,5 +30,9 @@ export class GearboxItemComponent implements OnInit {
       gearboxType: this.gearbox,
       checkedToUnchecked: !this.gearboxCheckbox.nativeElement.checked
     });
+  }
+
+  ngOnDestroy(){
+    this.resetCheckboxSub.unsubscribe();
   }
 }
