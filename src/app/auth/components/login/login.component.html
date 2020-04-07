@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6 col-lg-8 leftside">
-            <video autoplay loop muted preload="auto" style="height: 100vh;" class="animated slideInLeft slower">
+            <video loop muted preload="metadata" (canplay)="videoPlayer()" style="height: 100vh;">
                 <source src="../../../../assets/videos/video2.mp4" type="video/mp4" >
             </video>
         </div>
@@ -25,14 +25,14 @@
                     <p>or&nbsp;<a [routerLink]="['/auth/register']" routerLinkActive="active">create an account</a></p>
                 </div>
                 <div class="col-12">
-                    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+                    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" autocomplete="off">
                         <div class="form-group position-relative">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" ngModel email required>
-                            <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" ngModel email required #email="ngModel">
+                            <fa-icon *ngIf="!email.valid && email.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
                         </div>
                         <div class="form-group position-relative">
-                            <input type="password" class="form-control position-relative" name="password" id="password" placeholder="Password" ngModel required>
-                            <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel required #password="ngModel">
+                            <fa-icon *ngIf="!password.valid && password.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red;"></fa-icon>
                         </div>
                         <div class="from-group">
                             <input type="submit" value="Login" class="btn btn-block text-white" [disabled]="!loginForm.valid">

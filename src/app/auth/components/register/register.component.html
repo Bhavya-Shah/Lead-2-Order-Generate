@@ -21,20 +21,20 @@
                 <div class="col-12">
                     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
                         <div class="form-group position-relative">
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" ngModel required>
-                            <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" ngModel required #username="ngModel">
+                            <fa-icon *ngIf="!username.valid && username.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
                         </div>
                         <div class="form-group position-relative">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" ngModel email required>
-                            <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" ngModel email required #email="ngModel">
+                            <fa-icon *ngIf="!email.valid && email.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
                         </div>
                         <div class="form-group position-relative">
-                            <input type="password" class="form-control position-relative" name="password" id="password" placeholder="Password" ngModel required>
-                            <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
+                            <input type="password" class="form-control position-relative" name="password" id="password" placeholder="Password" ngModel required #password="ngModel">
+                            <fa-icon *ngIf="!password.valid && password.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
                         </div>
                         <div class="form-group position-relative">
-                            <input type="password" class="form-control position-relative" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" ngModel required>
-                            <fa-icon [icon]="faExclamationCircle" class="position-absolute d-none" style="right:7px; top:7px; color:red"></fa-icon>
+                            <input type="password" class="form-control position-relative" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" ngModel required #confirmPassword="ngModel">
+                            <fa-icon *ngIf="!confirmPassword.valid && confirmPassword.touched || (confirmPassword.value != password.value)" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
                         </div>
                         <div class="from-group">
                             <input type="submit" value="Submit" class="btn btn-block text-white" [disabled]="!loginForm.valid">
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="col-md-6 col-lg-8 rightside">
-            <video autoplay loop muted preload="auto" style="height: 100vh" class="animated slideInRight slower">
+            <video loop muted preload="metadata" (canplay)="videoPlayer()" style="height: 100vh">
                 <source src="../../../../assets/videos/video1.mp4" type="video/mp4" >
             </video>
         </div>

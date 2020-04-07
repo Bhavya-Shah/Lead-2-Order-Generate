@@ -7,26 +7,26 @@ import { NgForm } from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.sass']
 })
-export class RegisterComponent implements OnInit, AfterViewInit {
+export class RegisterComponent implements OnInit {
   faTimes = faTimes;
   faExclamationCircle = faExclamationCircle;
   playVideo: HTMLMediaElement
 
-  constructor(){ }
+  constructor() { }
 
   ngOnInit(): void {
-   }
+  }
 
-   ngAfterViewInit(){
+  videoPlayer() {
     this.playVideo = document.querySelector('video')
-    if(this.playVideo.pause || this.playVideo.readyState == 4){
+    if (this.playVideo.pause) {
       this.playVideo.muted = true // important
       this.playVideo.play()
-    } 
-   }
+    }
+    this.playVideo.classList.add("animated", "fadeInRightBig")
+  }
 
   onSubmit(loginForm: NgForm) {
-    console.log(document.querySelector('video').readyState)
     console.log(loginForm);
   }
 }

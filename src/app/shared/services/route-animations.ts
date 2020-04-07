@@ -19,36 +19,4 @@ trigger('routeAnimations', [
             )
         ], {optional: true})
     ])
-    // transition('* => login', [
-    //     query (':enter, :leave',[
-    //         style({
-    //             position: 'absolute', 
-    //             width: '100%',
-    //             opacity: 0,
-    //         })
-    //     ], {optional: true}), 
-    //     query(':enter', [
-    //         animate('800ms ease',
-    //         style({
-    //             opacity: 1, 
-    //         })
-    //         )
-    //     ], {optional: true})
-    // ]),
-    // transition('* => register', [
-    //     query (':enter, :leave',[
-    //         style({
-    //             position: 'absolute', 
-    //             width: '100%',
-    //             opacity: 0,
-    //         })
-    //     ], {optional: true}), 
-    //     query(':enter', [
-    //         animate('800ms ease',
-    //         style({
-    //             opacity: 1, 
-    //         })
-    //         )
-    //     ], {optional: true})
-    // ])
 ])

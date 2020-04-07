@@ -11,8 +11,8 @@ const routes: Routes = [
 // add a default route
 {path: '', component: HomeComponent, data: { animation: 'home' }},
 {path: 'auth', children: [
-  {path: 'login', component: LoginComponent, data : {animation: 'login'}},
-  {path: 'register', component: RegisterComponent, data : {animation: 'register'}},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent}
 ]},
   { path: 'car',

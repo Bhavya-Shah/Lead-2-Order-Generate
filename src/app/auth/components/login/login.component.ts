@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
   faTimes = faTimes
   faExclamationCircle = faExclamationCircle;
   playVideo: HTMLVideoElement
@@ -17,16 +17,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit() {
+  videoPlayer(){
     this.playVideo = document.querySelector('video')
-    if (this.playVideo.pause || this.playVideo.readyState == 4) {
+    if(this.playVideo.pause){
       this.playVideo.muted = true // important
       this.playVideo.play()
     }
-  }
+    this.playVideo.classList.add("animated", "fadeInLeftBig")
+  } 
 
   onSubmit(loginForm: NgForm) {
-    console.log(document.querySelector('video').readyState)
     console.log(loginForm);
   }
 }
