@@ -4,6 +4,7 @@ import {
   HttpClient,
   HttpHeaders,
   HttpErrorResponse,
+  HttpParams
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap, catchError } from 'rxjs/operators';
@@ -140,5 +141,11 @@ export class AuthService {
       return throwError(errorMessage);
     }
     return throwError(errorRes.error.error_description);
+  }
+
+  getPassword(email){
+    return this.http.get('http://localhost:52778/api/auth', {
+      params: new HttpParams().set('email', email)
+    })
   }
 }
