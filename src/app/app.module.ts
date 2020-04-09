@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -25,6 +25,7 @@ import { ForgotPasswordComponent } from './auth/components/forgot-password/forgo
 import { RegisterComponent } from './auth/components/register/register.component';
 import { PriceRangeListComponent } from './car/components/filterbar/price-range-list/price-range-list.component';
 import { PriceRangeItemComponent } from './car/components/filterbar/price-range-list/price-range-item/price-range-item.component';
+import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,13 @@ import { PriceRangeItemComponent } from './car/components/filterbar/price-range-
     FontAwesomeModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

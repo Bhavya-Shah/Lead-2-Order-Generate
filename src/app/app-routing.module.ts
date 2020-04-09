@@ -6,6 +6,7 @@ import { HomeComponent } from './home-page/components/home/home.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { ForgotPasswordComponent } from './auth/components/forgot-password/forgot-password.component';
+import { AuthGuard } from './auth/guard/auth.guard';
 
 const routes: Routes = [
 // add a default route
@@ -19,7 +20,9 @@ const routes: Routes = [
     children: [
       { path: '', component: CarFilterComponent},
       { path: ':id', component: CarDetailsComponent }
-    ]}
+    ],
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({

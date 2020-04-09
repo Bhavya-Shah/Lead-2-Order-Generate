@@ -27,8 +27,8 @@
                 <div class="col-12">
                     <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" autocomplete="off">
                         <div class="form-group position-relative">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" ngModel email required #email="ngModel">
-                            <fa-icon *ngIf="!email.valid && email.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
+                            <input type="username" class="form-control" name="username" id="username" placeholder="username" ngModel required #username="ngModel">
+                            <fa-icon *ngIf="!username.valid && username.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
                         </div>
                         <div class="form-group position-relative">
                             <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel required #password="ngModel">
