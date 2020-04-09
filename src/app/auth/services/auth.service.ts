@@ -10,11 +10,20 @@ import { tap, catchError } from 'rxjs/operators';
 
 import { User } from '../models/user.model';
 
-export interface AuthResponseData {
+interface AuthResponseData {
   access_token: string;
   token_type: string;
   expires_in: string;
 }
+
+class UserEntity {
+  constructor(
+    public Username: string,
+    public Email: string,
+    public Password: string
+  ) {}
+}
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -22,6 +31,29 @@ export class AuthService {
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  register(username: string, email: string, password: string) {
+    const userEntity = new UserEntity(
+      username,
+      email,
+      password
+    );
+    console.log(userEntity);
+    return this.http.post(
+      'http://localhost:52778/api/auth',
+      userEntity,
+      )
+      .pipe(
+        catchError(httpErrorResponse => {
+          const errorMessage = 'An unknown error occured';
+          if (!(httpErrorResponse.error && httpErrorResponse.error.Message)) {
+            return throwError(errorMessage);
+          }
+          // console.log(JSON.parse(httpErrorResponse.error.Message));
+          return throwError(JSON.parse(httpErrorResponse.error.Message));
+        })
+      );
+  }
 
   login(username: string, password: string) {
     const body = new URLSearchParams();

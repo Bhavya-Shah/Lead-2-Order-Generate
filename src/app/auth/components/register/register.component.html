@@ -19,7 +19,7 @@
                     <p></p>
                 </div>
                 <div class="col-12">
-                    <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+                    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
                         <div class="form-group position-relative">
                             <input type="text" class="form-control" name="username" id="username" placeholder="Username" ngModel required #username="ngModel">
                             <fa-icon *ngIf="!username.valid && username.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
@@ -37,7 +37,7 @@
                             <fa-icon *ngIf="!confirmPassword.valid && confirmPassword.touched || (confirmPassword.value != password.value)" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
                         </div>
                         <div class="from-group">
-                            <input type="submit" value="Submit" class="btn btn-block text-white" [disabled]="!loginForm.valid">
+                            <input type="submit" value="Submit" class="btn btn-block text-white" [disabled]="!registerForm.valid">
                         </div>
                     </form>
                 </div>
