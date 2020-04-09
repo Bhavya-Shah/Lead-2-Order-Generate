@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { faExclamationCircle, faLock } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
+import {ForgotPasswordService} from '../../services/forgot-password.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,14 +10,25 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./forgot-password.component.sass']
 })
 export class ForgotPasswordComponent implements OnInit {
+  emailAddress: any = ""
   faLock=faLock
   faExclamationCircle=faExclamationCircle
-  constructor() { }
+  constructor(private passwordservice: ForgotPasswordService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(forgotPasswordForm: NgForm){
-    console.log(forgotPasswordForm)
+  // onSubmit(forgotPasswordForm: NgForm){
+  // console.log(this.emailAddress)
+  // this.router.navigate(['/auth/forgot-password'], {queryParams: forgotPasswordForm.value})
+  // this.passwordservice.getPassword(forgotPasswordForm.value).subscribe()  
+  // console.log(forgotPasswordForm.value)
+  // }
+
+  onSubmit(){
+    this.router.navigate(['/auth/forgot-password'], {queryParams: {email: this.emailAddress}})
+    this.passwordservice.getPassword(this.emailAddress).subscribe()
+   console.log(this.emailAddress)
   }
 }
