@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.authService.autoLogin();
     this.userSub = this.authService.user.subscribe((user) => {
       const isAuth = !!user;
-      console.log(isAuth);
+      // console.log(isAuth);
       if (isAuth) {
         this.username = user.username;
       } else {
@@ -132,7 +132,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    console.log('In');
+    // console.log('In');
     this.authService.logout();
   }
 

@@ -143,9 +143,9 @@ export class AuthService {
     return throwError(errorRes.error.error_description);
   }
 
-  getPassword(email){
+  getPassword(email) {
     return this.http.get('http://localhost:52778/api/auth', {
       params: new HttpParams().set('email', email)
-    })
+    });
   }
 }

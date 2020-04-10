@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe(
         user => {
           const isAuth = !!user;
-          console.log(isAuth);
+          // console.log(isAuth);
           if (isAuth) {
             this.router.navigate(['/']);
           }

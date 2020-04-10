@@ -3,6 +3,7 @@ import { Fuel } from './fuel.model';
 import { Gearbox } from './gearbox.model';
 
 export class Car{
+  public LeasePrice: number;
   constructor(
     public CarId: number,
     public Carname: string,
