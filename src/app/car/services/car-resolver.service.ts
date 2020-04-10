@@ -3,9 +3,10 @@ import { Car } from '../models/car.model';
 import { CarService } from './car.service';
 import { DataManagementService } from 'src/app/shared/services/data-management.service';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
-export class CarResolverService implements Resolve<any> {
+export class CarResolverService implements Resolve<Observable<any> | Car[]> {
   constructor(
     private carService: CarService,
     private dmService: DataManagementService
