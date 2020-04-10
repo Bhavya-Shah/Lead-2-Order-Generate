@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
-  HttpParams
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap, catchError } from 'rxjs/operators';
 
@@ -41,7 +36,8 @@ export class AuthService {
     );
     console.log(userEntity);
     return this.http.post(
-      'http://localhost:52778/api/auth',
+      // http://localhost:52778
+      'http://192.168.2.3:6969/api/auth',
       userEntity,
       )
       .pipe(
@@ -63,7 +59,8 @@ export class AuthService {
     body.set('grant_type', 'password');
     // console.log(body.get('grant_type'));
     return this.http
-      .post<AuthResponseData>('http://localhost:52778/token', body.toString(), {
+      // http://localhost:52778
+      .post<AuthResponseData>('http://192.168.2.3:6969/token', body.toString(), {
         headers: new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded',
         }),
@@ -144,7 +141,8 @@ export class AuthService {
   }
 
   getPassword(email){
-    return this.http.get('http://localhost:52778/api/auth', {
+    // http://localhost:52778
+    return this.http.get('http://192.168.2.3:6969/api/auth', {
       params: new HttpParams().set('email', email)
     })
   }

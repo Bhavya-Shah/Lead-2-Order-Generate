@@ -18,7 +18,8 @@ export class DataManagementService{
               private carService: CarService){}
 
   getCarData(){
-    return this.http.get<GetResponse>('http://localhost:52778/api/car')
+    // http://localhost:52778
+    return this.http.get<GetResponse>('http://192.168.2.3:6969/api/car')
       .pipe(
         tap( (resData: GetResponse) => {
           console.log(resData);
