@@ -9,9 +9,9 @@ import { CarService } from 'src/app/car/services/car.service';
 @Injectable({providedIn: 'root'})
 export class DataManagementService{
   priceRanges: PriceRange[] = [
-    new PriceRange(4000, 4499),
-    new PriceRange(4500, 4999),
-    new PriceRange(5000, 5999)
+    new PriceRange(260, 269),
+    new PriceRange(270, 279),
+    new PriceRange(280, 289)
   ];
 
   constructor(private http: HttpClient,

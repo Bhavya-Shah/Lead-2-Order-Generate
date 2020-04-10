@@ -141,4 +141,9 @@ export class CarService{
     return car;
   }
 
+  calculateLease(car: Car, mileage: number = 10000, month: number = 12) {
+    const price = car.Price / 100 + mileage / 100 + month * 10 ;
+    return price;
+  }
+
 }

@@ -144,6 +144,6 @@ export class AuthService {
     // http://localhost:52778
     return this.http.get('http://192.168.2.3:6969/api/auth', {
       params: new HttpParams().set('email', email)
-    })
+    });
   }
 }

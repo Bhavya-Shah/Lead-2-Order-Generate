@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { ForgotPasswordComponent } from './auth/components/forgot-password/forgot-password.component';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { CarResolverService } from './car/services/car-resolver.service';
 
 const routes: Routes = [
 // add a default route
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'car',
     children: [
       { path: '', component: CarFilterComponent},
-      { path: ':id', component: CarDetailsComponent }
+      { path: ':id', component: CarDetailsComponent, resolve: [CarResolverService] }
     ],
     canActivate: [AuthGuard]
   }

@@ -1,17 +1,17 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import { Car } from "src/app/car/models/car.model";
-import { CarService } from "../../services/car.service";
-import { Brand } from "../../models/brand.model";
-import { Fuel } from "../../models/fuel.model";
-import { Gearbox } from "../../models/gearbox.model";
-import { PriceRange } from "../../models/price-range.model";
+import { Car } from 'src/app/car/models/car.model';
+import { CarService } from '../../services/car.service';
+import { Brand } from '../../models/brand.model';
+import { Fuel } from '../../models/fuel.model';
+import { Gearbox } from '../../models/gearbox.model';
+import { PriceRange } from '../../models/price-range.model';
 
 @Component({
-  selector: "app-car-list",
-  templateUrl: "./car-list.component.html",
-  styleUrls: ["./car-list.component.sass"]
+  selector: 'app-car-list',
+  templateUrl: './car-list.component.html',
+  styleUrls: ['./car-list.component.sass']
 })
 export class CarListComponent implements OnInit, OnDestroy {
   cars: Car[] = [];
@@ -117,9 +117,10 @@ export class CarListComponent implements OnInit, OnDestroy {
         this.selectedGearboxTypes.length > 0 ? gearboxTypeCheck : true;
       var priceRangeFilter = false;
       if (this.selectedPriceRanges.length > 0) {
-        for (let priceRange of this.selectedPriceRanges) {
-          if (car.Price >= priceRange.min && car.Price <= priceRange.max)
+        for (const priceRange of this.selectedPriceRanges) {
+          if (car.LeasePrice >= priceRange.min && car.LeasePrice <= priceRange.max) {
             priceRangeFilter = true;
+          }
         }
       } else {
         priceRangeFilter = true;
