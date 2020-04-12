@@ -37,7 +37,8 @@ export class AuthService {
     console.log(userEntity);
     return this.http.post(
       // http://localhost:52778
-      'http://192.168.2.3:6969/api/auth',
+      // http://192.168.2.3:6969
+      'http://localhost:52778/api/auth',
       userEntity,
       )
       .pipe(
@@ -60,7 +61,8 @@ export class AuthService {
     // console.log(body.get('grant_type'));
     return this.http
       // http://localhost:52778
-      .post<AuthResponseData>('http://192.168.2.3:6969/token', body.toString(), {
+      // http://192.168.2.3:6969
+      .post<AuthResponseData>('http://localhost:52778/token', body.toString(), {
         headers: new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded',
         }),
@@ -142,7 +144,8 @@ export class AuthService {
 
   getPassword(email){
     // http://localhost:52778
-    return this.http.get('http://192.168.2.3:6969/api/auth', {
+    // http://192.168.2.3:6969
+    return this.http.get('http://localhost:52778/api/auth', {
       params: new HttpParams().set('email', email)
     });
   }
