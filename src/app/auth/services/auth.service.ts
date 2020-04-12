@@ -26,7 +26,10 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient, 
+    private router: Router
+    ) { }
 
   register(username: string, email: string, password: string) {
     const userEntity = new UserEntity(
@@ -37,7 +40,7 @@ export class AuthService {
     console.log(userEntity);
     return this.http.post(
       // http://localhost:52778
-      'http://192.168.2.3:6969/api/auth',
+      'http://localhost:9696/api/auth',
       userEntity,
       )
       .pipe(
@@ -60,7 +63,7 @@ export class AuthService {
     // console.log(body.get('grant_type'));
     return this.http
       // http://localhost:52778
-      .post<AuthResponseData>('http://192.168.2.3:6969/token', body.toString(), {
+      .post<AuthResponseData>('http://localhost:9696/token', body.toString(), {
         headers: new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded',
         }),
@@ -141,9 +144,19 @@ export class AuthService {
   }
 
   getPassword(email){
+    console.log(email)
     // http://localhost:52778
-    return this.http.get('http://192.168.2.3:6969/api/auth', {
+    return this.http.get('http://localhost:52778/api/auth', {
       params: new HttpParams().set('email', email)
-    });
+    }).pipe(
+      catchError(httpErrorResponse => {
+        const errorMessage = 'An unknown error occured';
+        if (!(httpErrorResponse.error && httpErrorResponse.error.Message)) {
+          return throwError(errorMessage);
+        }
+        //console.log(JSON.parse(httpErrorResponse.error.Message));
+        return throwError(JSON.parse(httpErrorResponse.error.Message));
+      })
+    );
   }
 }
