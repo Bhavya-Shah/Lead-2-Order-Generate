@@ -26,7 +26,10 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) { }
 
   register(username: string, email: string, password: string) {
     const userEntity = new UserEntity(
@@ -37,8 +40,12 @@ export class AuthService {
     console.log(userEntity);
     return this.http.post(
       // http://localhost:52778
+<<<<<<< HEAD
       // http://192.168.2.3:6969
       'http://localhost:52778/api/auth',
+=======
+      'http://localhost:9696/api/auth',
+>>>>>>> c6eda2a99491f91582fda0389e08f24aa35120f9
       userEntity,
       )
       .pipe(
@@ -143,10 +150,20 @@ export class AuthService {
   }
 
   getPassword(email){
+    console.log(email)
     // http://localhost:52778
     // http://192.168.2.3:6969
     return this.http.get('http://localhost:52778/api/auth', {
       params: new HttpParams().set('email', email)
-    });
+    }).pipe(
+      catchError(httpErrorResponse => {
+        const errorMessage = 'An unknown error occured';
+        if (!(httpErrorResponse.error && httpErrorResponse.error.Message)) {
+          return throwError(errorMessage);
+        }
+        //console.log(JSON.parse(httpErrorResponse.error.Message));
+        return throwError(JSON.parse(httpErrorResponse.error.Message));
+      })
+    );
   }
 }

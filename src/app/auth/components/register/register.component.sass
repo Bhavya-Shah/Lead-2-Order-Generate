@@ -12,7 +12,6 @@ $submit-color: #3282b8
 .rightside
     padding: 0
     overflow: hidden
-    // position: relative
     background-color: $right-side
     height: 100vh
 
@@ -41,37 +40,14 @@ div>h2
 input[type=submit]
     background-color: $submit-color
 
+input[disabled]
+    cursor: not-allowed
+    
 @media (max-width: 575.98px)
     .rightside
         display: none
-
-    // .rightside
-    //     background-color: transparent
-    
-    // .nav-item>a
-    //     color: white
-    
-    // div>h2, div>p 
-    //     color: white
-    
-    // p>a, form a
-    //     // background-color: black,
-    //     color: #17A2B8
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) and (max-width: 767.98px) 
     .rightside
         display: none    
-
-    // .rightside
-    //     background-color: transparent
-    
-    // .nav-item>a
-    //     color: white
-    
-    // div>h2, div>p 
-    //     color: white
-  
-    // p>a, form a
-    //     // background-color: black
-    //     color: #17A2B8

@@ -14,18 +14,18 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  faBars = faBars;
-  faCheckCircle = faCheckCircle;
-  faTimesCircle = faTimesCircle;
+  faBars = faBars
+  faCheckCircle = faCheckCircle
+  faTimesCircle = faTimesCircle
 
-  navLinks = [];
-  carlogo = [];
-  developersPic = [];
-  flag = false;
-  username: string = null;
-  userSub: Subscription;
+  navLinks = []
+  carlogo = []
+  developersPic = []
+  flag = false
+  username: string = null
+  userSub: Subscription
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.autoLogin();
@@ -35,26 +35,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       if (isAuth) {
         this.username = user.username;
       } else {
-        this.username = null;
+        this.username = null
       }
     });
 
     // links in navbar
     this.navLinks = [
       { key: 1, href: '#', id: 'linkHome', innerHTML: 'Home' },
-      {
-        key: 2,
-        href: '#privateLease',
-        id: 'linkLease',
-        innerHTML: 'Why Private Lease',
-      },
+      { key: 2, href: '#privateLease', id: 'linkLease', innerHTML: 'Why Private Lease' },
       { key: 3, href: '#benefits', id: 'linkBenefits', innerHTML: 'Benefits' },
-      {
-        key: 4,
-        href: '#developers',
-        id: 'linkDevelopers',
-        innerHTML: 'Developers',
-      },
+      { key: 4, href: '#developers', id: 'linkDevelopers', innerHTML: 'Developers' },
       { key: 5, href: null, id: 'login', innerHTML: 'Login/Register' },
     ];
     // car logo
@@ -98,9 +88,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   @HostListener('window:scroll')
   ChangeStyleOfHeaderBar() {
-    var anchor: NodeListOf<HTMLElement> = document.querySelectorAll(
-      '.nav-item>a'
-    );
+    var anchor: NodeListOf<HTMLElement> = document.querySelectorAll('.nav-item>a');
     var header = document.getElementById('headerBar');
     var icon = document.getElementById('changeColor');
     var logoinverse: HTMLElement = document.querySelector('#headerBar img');
@@ -132,7 +120,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onLogout() {
-    // console.log('In');
     this.authService.logout();
   }
 
