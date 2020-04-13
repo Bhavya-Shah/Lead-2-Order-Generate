@@ -5,7 +5,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { Ng5SliderModule } from 'ng5-slider';
 
 import { AppComponent } from './app.component';
 import { FilterbarComponent } from './car/components/filterbar/filterbar.component';
@@ -49,7 +50,7 @@ import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.serv
     RegisterComponent,
     PriceRangeListComponent,
     PriceRangeItemComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -58,7 +59,8 @@ import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.serv
     FormsModule,
     FontAwesomeModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    Ng5SliderModule
   ],
   providers: [
     {

@@ -15,12 +15,12 @@ import { PriceRange } from '../../models/price-range.model';
 })
 export class CarListComponent implements OnInit, OnDestroy {
   cars: Car[] = [];
-  filterdCars: Car[] = [];
+  filteredCars: Car[] = [];
   selectedBrands: Brand[] = [];
   selectedFuelTypes: Fuel[] = [];
   selectedGearboxTypes: Gearbox[] = [];
   selectedPriceRanges: PriceRange[] = [];
-  carSubcription: Subscription;
+  carSubscription: Subscription;
   brandCheckboxSub: Subscription;
   fuelTypeCheckboxSub: Subscription;
   gearboxTypeCheckboxSub: Subscription;
@@ -31,13 +31,13 @@ export class CarListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cars = this.carService.getCars();
-    this.carSubcription = this.carService.CarsChanged.subscribe(
+    this.carSubscription = this.carService.CarsChanged.subscribe(
       (cars: Car[]) => {
         this.cars = cars;
-        this.filterdCars = cars;
+        this.filteredCars = cars;
       }
     );
-    this.filterdCars = this.cars;
+    this.filteredCars = this.cars;
 
     this.brandCheckboxSub = this.carService.changedBrand.subscribe(
       (res: { brand: Brand; checkedToUnchecked: boolean }) => {
@@ -82,7 +82,7 @@ export class CarListComponent implements OnInit, OnDestroy {
     );
 
     this.resetFilterSub = this.carService.resetAllCheckbox.subscribe(() => {
-      this.filterdCars = this.cars;
+      this.filteredCars = this.cars;
       this.selectedBrands = [];
       this.selectedFuelTypes = [];
       this.selectedGearboxTypes = [];
@@ -91,7 +91,7 @@ export class CarListComponent implements OnInit, OnDestroy {
   }
 
   carFilter() {
-    this.filterdCars = this.cars.filter(car => {
+    this.filteredCars = this.cars.filter(car => {
       let brandCheck: boolean = false;
       let fuelTypeCheck: boolean = false;
       let gearboxTypeCheck: boolean = false;
@@ -135,7 +135,7 @@ export class CarListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.carSubcription.unsubscribe();
+    this.carSubscription.unsubscribe();
     this.brandCheckboxSub.unsubscribe();
     this.fuelTypeCheckboxSub.unsubscribe();
     this.gearboxTypeCheckboxSub.unsubscribe();
