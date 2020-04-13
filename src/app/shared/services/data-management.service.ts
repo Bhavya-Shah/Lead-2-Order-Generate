@@ -8,6 +8,7 @@ import { CarService } from 'src/app/car/services/car.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataManagementService {
+  getCarApi = 'http://localhost:52778/api/car'
   priceRanges: PriceRange[] = [
     new PriceRange(260, 269),
     new PriceRange(270, 279),
@@ -18,8 +19,7 @@ export class DataManagementService {
               private carService: CarService){}
 
   getCarData() {
-    // http://localhost:52778
-    return this.http.get<GetResponse>('http://localhost:9696/api/car')
+    return this.http.get<GetResponse>(this.getCarApi)
       .pipe(
         tap((resData: GetResponse) => {
           console.log(resData);

@@ -24,6 +24,9 @@ class UserEntity {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+  registerApi = 'http://localhost:52778/api/auth'
+  loginApi = 'http://localhost:52778/token'
+  getPasswordApi = 'http://localhost:52778/api/auth'
   private tokenExpirationTimer: any;
 
   constructor(
@@ -39,8 +42,7 @@ export class AuthService {
     );
     console.log(userEntity);
     return this.http.post(
-      // http://localhost:52778
-      'http://localhost:9696/api/auth',
+      this.registerApi,
       userEntity,
       )
       .pipe(
@@ -62,8 +64,7 @@ export class AuthService {
     body.set('grant_type', 'password');
     // console.log(body.get('grant_type'));
     return this.http
-      // http://localhost:52778
-      .post<AuthResponseData>('http://localhost:9696/token', body.toString(), {
+      .post<AuthResponseData>(this.loginApi, body.toString(), {
         headers: new HttpHeaders({
           'Content-Type': 'application/x-www-form-urlencoded',
         }),
@@ -145,8 +146,7 @@ export class AuthService {
 
   getPassword(email){
     console.log(email)
-    // http://localhost:52778
-    return this.http.get('http://localhost:52778/api/auth', {
+    return this.http.get(this.getPasswordApi, {
       params: new HttpParams().set('email', email)
     }).pipe(
       catchError(httpErrorResponse => {

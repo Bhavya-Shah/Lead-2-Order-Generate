@@ -3,7 +3,7 @@ import { faExclamationCircle, faEnvelope, faLock } from '@fortawesome/free-solid
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,7 +12,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class ForgotPasswordComponent implements OnInit {
   faLock = faLock
-  faExclamationCircle = faExclamationCircle
+  faExclamationCircle = faExclamationCircle;
   faEnvelope = faEnvelope
   notification: boolean = false
   errorMessage: any = null
