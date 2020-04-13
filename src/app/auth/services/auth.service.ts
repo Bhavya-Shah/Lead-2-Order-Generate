@@ -40,19 +40,18 @@ export class AuthService {
     console.log(userEntity);
     return this.http.post(
       // http://localhost:52778
-<<<<<<< HEAD
       // http://192.168.2.3:6969
       'http://localhost:52778/api/auth',
-=======
-      'http://localhost:9696/api/auth',
->>>>>>> c6eda2a99491f91582fda0389e08f24aa35120f9
       userEntity,
       )
       .pipe(
         catchError(httpErrorResponse => {
-          const errorMessage = 'An unknown error occured';
-          if (!(httpErrorResponse.error && httpErrorResponse.error.Message)) {
-            return throwError(errorMessage);
+          const errorMessage = {
+            message: 'An unknown error occured',
+            property: 'none'
+          };
+          if (!httpErrorResponse.error || !httpErrorResponse.error.Message) {
+            return throwError([errorMessage]);
           }
           // console.log(JSON.parse(httpErrorResponse.error.Message));
           return throwError(JSON.parse(httpErrorResponse.error.Message));
@@ -92,7 +91,14 @@ export class AuthService {
           // console.log(user.expire_date);
           localStorage.setItem('userData', JSON.stringify(user));
         }),
-        catchError(this.handleError)
+        catchError((errorRes: HttpErrorResponse) => {
+          const errorMessage = 'An unknown error occured';
+          console.log();
+          if (!errorRes.error || !errorRes.error.error_description) {
+            return throwError(errorMessage);
+          }
+          return throwError(errorRes.error.error_description);
+        })
       );
   }
 
@@ -140,17 +146,8 @@ export class AuthService {
     }, expirationDuration);
   }
 
-  private handleError(errorRes: HttpErrorResponse) {
-    const errorMessage = 'An unknown error occured';
-    console.log(errorRes);
-    if (!errorRes.error || !errorRes.error.error_description) {
-      return throwError(errorMessage);
-    }
-    return throwError(errorRes.error.error_description);
-  }
-
-  getPassword(email){
-    console.log(email)
+  getPassword(email) {
+    console.log(email);
     // http://localhost:52778
     // http://192.168.2.3:6969
     return this.http.get('http://localhost:52778/api/auth', {
@@ -161,7 +158,7 @@ export class AuthService {
         if (!(httpErrorResponse.error && httpErrorResponse.error.Message)) {
           return throwError(errorMessage);
         }
-        //console.log(JSON.parse(httpErrorResponse.error.Message));
+        // console.log(JSON.parse(httpErrorResponse.error.Message));
         return throwError(JSON.parse(httpErrorResponse.error.Message));
       })
     );

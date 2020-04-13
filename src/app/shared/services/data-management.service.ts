@@ -6,11 +6,7 @@ import { PriceRange } from 'src/app/car/models/price-range.model';
 import { GetResponse } from '../models/interfaces/getResponse.model';
 import { CarService } from 'src/app/car/services/car.service';
 
-<<<<<<< HEAD
-@Injectable({providedIn: 'root'})
-=======
 @Injectable({ providedIn: 'root' })
->>>>>>> c6eda2a99491f91582fda0389e08f24aa35120f9
 export class DataManagementService {
   priceRanges: PriceRange[] = [
     new PriceRange(260, 269),

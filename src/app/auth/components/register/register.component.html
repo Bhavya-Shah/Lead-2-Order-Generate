@@ -36,7 +36,7 @@
                             <input type="password" class="form-control position-relative" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" autocomplete="current-confirmPassword" ngModel required #confirmPassword="ngModel">
                             <fa-icon *ngIf="!confirmPassword.valid && confirmPassword.touched || (confirmPassword.value != password.value)" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
                         </div>
-                        <div class="form-group" *ngIf="errorMessage != null">
+                        <div class="form-group" *ngIf="errorMessage">
                             <ul class="text-danger p-0 m-0" *ngFor="let err of errorMessage" style="list-style: none;">
                                 <small><li>{{err.message}}</li></small>
                             </ul>
