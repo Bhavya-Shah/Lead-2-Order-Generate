@@ -16,7 +16,7 @@ export class DataManagementService {
   ];
 
   constructor(private http: HttpClient,
-              private carService: CarService){}
+              private carService: CarService) {}
 
   getCarData() {
     return this.http.get<GetResponse>(this.getCarApi)
@@ -28,7 +28,9 @@ export class DataManagementService {
             resData.Brands,
             resData.FuelTypes,
             resData.GearBoxTypes,
-            this.priceRanges
+            this.priceRanges,
+            resData.Mileages,
+            resData.PaybackTimes
           );
           // this.carService.setBrands(resData.Brands);
           // this.carService.setFuelTypes(resData.FuelTypes);

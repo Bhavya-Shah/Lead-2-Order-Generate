@@ -14,16 +14,16 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.sass'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  faBars = faBars
-  faCheckCircle = faCheckCircle
-  faTimesCircle = faTimesCircle
+  faBars = faBars;
+  faCheckCircle = faCheckCircle;
+  faTimesCircle = faTimesCircle;
 
-  navLinks = []
-  carlogo = []
-  developersPic = []
-  flag = false
-  username: string = null
-  userSub: Subscription
+  navLinks = [];
+  carlogo = [];
+  developersPic = [];
+  flag = false;
+  username: string = null;
+  userSub: Subscription;
 
   constructor(private authService: AuthService) { }
 
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       if (isAuth) {
         this.username = user.username;
       } else {
-        this.username = null
+        this.username = null;
       }
     });
 

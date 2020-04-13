@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +13,13 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
-  faLock= faLock
-  faTimes = faTimes
-  faExclamationCircle = faExclamationCircle
-  playVideo: HTMLVideoElement
-  userSub: Subscription
+  faLock = faLock;
+  faTimes = faTimes;
+  faExclamationCircle = faExclamationCircle;
+  playVideo: HTMLVideoElement;
+  userSub: Subscription;
   // errorMessage: boolean = false
-  errorMessage: string = null
+  errorMessage: string = null;
 
   constructor(
     private authService: AuthService,
@@ -28,51 +28,51 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.authService.autoLogin()
+    this.authService.autoLogin();
     this.userSub = this.authService.user
       .subscribe(
         user => {
-          const isAuth = !!user
+          const isAuth = !!user;
           // console.log(isAuth);
           if (isAuth) {
-            this.router.navigate(['/'])
+            this.router.navigate(['/']);
           }
         }
-      )
+      );
   }
 
   videoPlayer() {
-    this.playVideo = document.querySelector('video')
+    this.playVideo = document.querySelector('video');
     if (this.playVideo.pause) {
-      this.playVideo.muted = true // important
-      this.playVideo.play()
+      this.playVideo.muted = true; // important
+      this.playVideo.play();
     }
-    this.playVideo.classList.add('animated', 'fadeInLeftBig')
+    this.playVideo.classList.add('animated', 'fadeInLeftBig');
   }
 
   onSubmit(loginForm: NgForm) {
     // console.log(loginForm.value)
-    const username = loginForm.value.username
-    const password = loginForm.value.password
-    this.spinner.show()
+    const username = loginForm.value.username;
+    const password = loginForm.value.password;
+    this.spinner.show();
     this.authService.login(username, password)
       .subscribe(
         res => {
-          this.spinner.hide()
+          this.spinner.hide();
           // this.errorMessage = false
-          this.errorMessage = null
-          console.log(res)
+          this.errorMessage = null;
+          console.log(res);
         },
         err => {
-          this.spinner.hide()
+          this.spinner.hide();
           // this.errorMessage = true
-          this.errorMessage = err
-          console.log(err)
+          this.errorMessage = err;
+          console.log(err);
         }
       );
   }
 
   ngOnDestroy() {
-    this.userSub.unsubscribe()
+    this.userSub.unsubscribe();
   }
 }

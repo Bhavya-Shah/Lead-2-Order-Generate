@@ -30,7 +30,7 @@ export class AuthService {
   private tokenExpirationTimer: any;
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private router: Router
     ) { }
 
@@ -47,9 +47,12 @@ export class AuthService {
       )
       .pipe(
         catchError(httpErrorResponse => {
-          const errorMessage = 'An unknown error occured';
-          if (!(httpErrorResponse.error && httpErrorResponse.error.Message)) {
-            return throwError(errorMessage);
+          const errorMessage = {
+            message: 'An unknown error occured',
+            property: 'none'
+          };
+          if (!httpErrorResponse.error || !httpErrorResponse.error.Message) {
+            return throwError([errorMessage]);
           }
           // console.log(JSON.parse(httpErrorResponse.error.Message));
           return throwError(JSON.parse(httpErrorResponse.error.Message));
@@ -87,7 +90,14 @@ export class AuthService {
           // console.log(user.expire_date);
           localStorage.setItem('userData', JSON.stringify(user));
         }),
-        catchError(this.handleError)
+        catchError((errorRes: HttpErrorResponse) => {
+          const errorMessage = 'An unknown error occured';
+          console.log();
+          if (!errorRes.error || !errorRes.error.error_description) {
+            return throwError(errorMessage);
+          }
+          return throwError(errorRes.error.error_description);
+        })
       );
   }
 
@@ -154,7 +164,7 @@ export class AuthService {
         if (!(httpErrorResponse.error && httpErrorResponse.error.Message)) {
           return throwError(errorMessage);
         }
-        //console.log(JSON.parse(httpErrorResponse.error.Message));
+        // console.log(JSON.parse(httpErrorResponse.error.Message));
         return throwError(JSON.parse(httpErrorResponse.error.Message));
       })
     );
