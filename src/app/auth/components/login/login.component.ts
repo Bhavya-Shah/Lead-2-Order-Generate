@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           const isAuth = !!user;
           // console.log(isAuth);
           if (isAuth) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/','dashboard']);
           }
         }
       );
