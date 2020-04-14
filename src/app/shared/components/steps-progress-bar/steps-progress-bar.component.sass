@@ -1,0 +1,63 @@
+h3
+  font-size: 1.32em
+  font-weight: 600
+  margin: 20px 0
+
+.application-progress
+
+  .overlay
+    position: relative
+
+    .overlay-inner
+      position: absolute
+      width: 100%
+
+      ul
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        list-style-type: none
+        padding: 0
+        font-family: Arial,Helvetica,sans-serif
+        font-size: 12px
+
+        li
+          flex: 1
+          text-align: center
+          overflow: hidden
+          text-overflow: ellipsis
+
+          .done
+            border-color: #f03f44
+            color: #000
+            cursor: pointer
+
+          .step
+            display: flex
+            align-items: center
+            justify-content: center
+            border: 1px solid #ccc
+            width: 24px
+            height: 24px
+            margin-left: auto
+            margin-right: auto
+            background-color: #fff
+            color: #ccc
+
+  .marker-container
+    height: 90px
+
+    .done-marker
+      height: 1px
+      background-color: #f03f44
+      float: left
+      margin-top: 12px
+
+    .todo-marker
+      height: 1px
+      background-color: #ccc
+      float: left
+      margin-top: 12px
+
+.secondary-border
+  border-color: #0aabc2 !important

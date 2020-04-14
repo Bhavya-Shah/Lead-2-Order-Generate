@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   faExclamationCircle = faExclamationCircle;
   playVideo: HTMLMediaElement;
   userSub: Subscription;
-  errorMessage: any = [];
+  errorMessage: { ErrorMessage: string, MemberNames: string[], Property: string}[] = [];
 
   constructor(
     private authService: AuthService,

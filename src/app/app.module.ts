@@ -30,6 +30,7 @@ import { PriceRangeItemComponent } from './car/components/filterbar/price-range-
 import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.service';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StepsProgressBarComponent } from './shared/components/steps-progress-bar/steps-progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PriceRangeItemComponent,
     HeaderComponent,
     DashboardComponent,
+    StepsProgressBarComponent,
 
   ],
   imports: [
