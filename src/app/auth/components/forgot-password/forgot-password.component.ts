@@ -3,7 +3,7 @@ import { faExclamationCircle, faEnvelope, faLock } from '@fortawesome/free-solid
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-forgot-password',
@@ -11,13 +11,13 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./forgot-password.component.sass']
 })
 export class ForgotPasswordComponent implements OnInit {
-  faLock = faLock
-  faExclamationCircle = faExclamationCircle
-  faEnvelope = faEnvelope
-  notification: boolean = false
-  errorMessage: any = null
+  faLock = faLock;
+  faExclamationCircle = faExclamationCircle;
+  faEnvelope = faEnvelope;
+  notification = false;
+  errorMessage: string = null;
   constructor(
-    private passwordservice: AuthService,
+    private authService: AuthService,
     private router: Router,
     private spinner: NgxSpinnerService
   ) { }
@@ -26,21 +26,20 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(forgotPasswordForm: NgForm) {
-    this.router.navigate(['/auth/forgot-password'], { queryParams: forgotPasswordForm.value })
-    this.spinner.show()
-    this.passwordservice.getPassword(forgotPasswordForm.value.email).subscribe(
+    this.router.navigate(['/auth/forgot-password'], { queryParams: forgotPasswordForm.value });
+    this.spinner.show();
+    this.authService.getPassword(forgotPasswordForm.value.email).subscribe(
       res => {
-        this.spinner.hide()
-        this.notification = true
-        this.errorMessage = null
-        console.log(res)
+        this.spinner.hide();
+        this.notification = true;
+        this.errorMessage = null;
       },
       err => {
-        this.notification = false
-        this.errorMessage = err
-        this.spinner.hide()
-        console.log(err)
+        this.notification = false;
+        this.errorMessage = err.ErrorMessage;
+        this.spinner.hide();
+        console.log(err);
       }
-    )
+    );
   }
 }

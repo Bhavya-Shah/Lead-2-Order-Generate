@@ -47,8 +47,8 @@ export class AuthService {
       .pipe(
         catchError(httpErrorResponse => {
           const errorMessage = {
-            message: 'An unknown error occured',
-            property: 'none'
+            ErrorMessage: 'An unknown error occurred!',
+            Property: 'none'
           };
           if (!httpErrorResponse.error || !httpErrorResponse.error.Message) {
             return throwError([errorMessage]);

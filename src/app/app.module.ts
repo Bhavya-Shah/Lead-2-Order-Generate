@@ -28,6 +28,7 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { PriceRangeListComponent } from './car/components/filterbar/price-range-list/price-range-list.component';
 import { PriceRangeItemComponent } from './car/components/filterbar/price-range-list/price-range-item/price-range-item.component';
 import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.service';
+import { StepsProgressBarComponent } from './shared/components/steps-progress-bar/steps-progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.serv
     RegisterComponent,
     PriceRangeListComponent,
     PriceRangeItemComponent,
+    StepsProgressBarComponent,
 
   ],
   imports: [

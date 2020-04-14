@@ -1,60 +1,86 @@
 <div class="container-fluid animated fadeIn">
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center leftside" id="leftside">
-            <nav class="navbar navbar-expand justify-content-start fixed-top">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a [routerLink]="['/']" routerLinkActive="active" class="nav-link">
-                            <fa-icon [icon]="faTimes"></fa-icon>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a [routerLink]="['/auth/login']" routerLinkActive="active" class="nav-link login">Login</a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="row mx-2">
-                <div class="col-12">
-                    <h2><strong>Register</strong></h2>
-                    <p></p>
-                </div>
-                <div class="col-12">
-                    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
-                        <div class="form-group position-relative">
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="current-username" ngModel required #username="ngModel" minlength="3" maxlength="20">
-                            <fa-icon *ngIf="!username.valid && username.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
-                        </div>
-                        <div class="form-group position-relative">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" ngModel required email #email="ngModel" autocomplete="current-email" minlength="6" maxlength="50">
-                            <fa-icon *ngIf="!email.valid && email.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
-                        </div>
-                        <div class="form-group position-relative">
-                            <input type="password" class="form-control position-relative" name="password" id="password" placeholder="Password" autocomplete="current-password" minlength="6" maxlength="20" ngModel required #password="ngModel">
-                            <fa-icon *ngIf="!password.valid && password.touched" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
-                        </div>
-                        <div class="form-group position-relative">
-                            <input type="password" class="form-control position-relative" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" autocomplete="current-confirmPassword" ngModel required #confirmPassword="ngModel">
-                            <fa-icon *ngIf="!confirmPassword.valid && confirmPassword.touched || (confirmPassword.value != password.value)" [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
-                        </div>
-                        <div class="form-group" *ngIf="errorMessage">
-                            <ul class="text-danger p-0 m-0" *ngFor="let err of errorMessage" style="list-style: none;">
-                                <small><li>{{err.message}}</li></small>
-                            </ul>
-                        </div>
-                        <div class="from-group">
-                            <input type="submit" value="Submit" class="btn btn-block text-white" [disabled]="!registerForm.valid || password.value != confirmPassword.value">
-                        </div>
-                    </form>
-                </div>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center leftside" id="leftside">
+      <nav class="navbar navbar-expand justify-content-start fixed-top">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a [routerLink]="['/']" routerLinkActive="active" class="nav-link">
+              <fa-icon [icon]="faTimes"></fa-icon>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/auth/login']" routerLinkActive="active" class="nav-link login">Login</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="row mx-2">
+        <div class="col-12">
+          <h2><strong>Register</strong></h2>
+          <p></p>
+        </div>
+        <div class="col-12">
+          <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+            <div class="form-group position-relative">
+              <input type="text" class="form-control" name="username" id="username" placeholder="Username"
+                autocomplete="current-username" ngModel required #username="ngModel" pattern="^[a-zA-Z0-9]{3,20}$">
+              <fa-icon *ngIf="!username.valid && username.touched" [icon]="faExclamationCircle"
+                class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
             </div>
+            <div class="form-group position-relative">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Email" ngModel required
+                email #email="ngModel" autocomplete="current-email" pattern="^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$">
+              <fa-icon *ngIf="!email.valid && email.touched" [icon]="faExclamationCircle" class="position-absolute"
+                style="right:7px; top:7px; color:red"></fa-icon>
+            </div>
+            <div class="form-group position-relative">
+              <input type="password" class="form-control position-relative" name="password" id="password"
+                placeholder="Password" autocomplete="current-password" ngModel required #password="ngModel"
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$">
+              <fa-icon *ngIf="!password.valid && password.touched" [icon]="faExclamationCircle"
+                class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
+            </div>
+            <div class="form-group position-relative">
+              <input type="password" class="form-control position-relative" name="confirmPassword" id="confirmPassword"
+                placeholder="Confirm Password" autocomplete="current-confirmPassword" ngModel required
+                #confirmPassword="ngModel">
+              <fa-icon *ngIf="password.value != confirmPassword.value && password.touched && confirmPassword.touched"
+                [icon]="faExclamationCircle" class="position-absolute" style="right:7px; top:7px; color:red"></fa-icon>
+            </div>
+            <div class="form-group" *ngIf="!registerForm.valid && errorMessage.length === 0">
+              <ul class="text-danger p-0 m-0" style="list-style: none;">
+                <small>
+                  <li *ngIf="!username.valid && username.touched">Username is required and must contain only
+                    alphanumeric characters between 3 to 20.</li>
+                  <li *ngIf="!email.valid && email.touched">Provide valid email address.</li>
+                  <li *ngIf="!password.valid && password.touched">Passwords must contain 6-16 characters with uppercase
+                    letters, lowercase letters and at least one number.</li>
+                  <li *ngIf="password.value != confirmPassword.value && password.touched && confirmPassword.touched">
+                    Password and Confirm Password do not match.</li>
+                </small>
+              </ul>
+            </div>
+            <div class="form-group" *ngIf="errorMessage">
+              <ul class="text-danger p-0 m-0" *ngFor="let err of errorMessage" style="list-style: none;">
+                <small>
+                  <li>{{err.ErrorMessage}}</li>
+                </small>
+              </ul>
+            </div>
+            <div class="from-group">
+              <input type="submit" value="Submit" class="btn btn-block text-white"
+                [disabled]="!registerForm.valid || password.value != confirmPassword.value">
+            </div>
+          </form>
         </div>
-        <div class="col-md-6 col-lg-8 rightside">
-            <video loop muted preload="metadata" (canplay)="videoPlayer()" style="height: 100vh">
-                <source src="../../../../assets/videos/Video1.webm" type="video/webm" >
-            </video>
-        </div>
+      </div>
     </div>
+    <div class="col-md-6 col-lg-8 rightside">
+      <video loop muted preload="metadata" (canplay)="videoPlayer()" style="height: 100vh">
+        <source src="../../../../assets/videos/Video1.webm" type="video/webm">
+      </video>
+    </div>
+  </div>
 </div>
 <ngx-spinner bdColor="rgba(0,0,0,0.85)" size="medium" type="ball-scale-pulse" color="#fff" fullscreen="true">
-    <h4 class="animated infinite pulse text-white">Loading</h4>
+  <h4 class="animated infinite pulse text-white">Loading</h4>
 </ngx-spinner>
