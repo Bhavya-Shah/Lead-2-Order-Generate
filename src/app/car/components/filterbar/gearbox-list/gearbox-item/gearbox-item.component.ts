@@ -14,6 +14,7 @@ export class GearboxItemComponent implements OnInit, OnDestroy {
   resetCheckboxSub: Subscription;
   @Input('gearbox-item') gearbox: Gearbox;
   @ViewChild('gearboxCheckbox') gearboxCheckbox: ElementRef;
+  @ViewChild('label') label: ElementRef;
 
   constructor(private carService: CarService) { }
 
@@ -30,6 +31,14 @@ export class GearboxItemComponent implements OnInit, OnDestroy {
       gearboxType: this.gearbox,
       checkedToUnchecked: !this.gearboxCheckbox.nativeElement.checked
     });
+    if(this.toggle == true)
+    {
+      this.label.nativeElement.style.cssText = 'background-color: hotpink'
+    }
+    else
+    {
+      this.label.nativeElement.style.removeProperty = 'background-color'
+    }
   }
 
   ngOnDestroy(){

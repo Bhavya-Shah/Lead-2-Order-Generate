@@ -1,4 +1,4 @@
-<label
+<!-- <label
   class="btn btn-secondary"
   #label
   [ngClass]="{'active': toggle}">
@@ -7,4 +7,8 @@
     #priceRangeCheckbox
     (change)="onChange()">
     {{priceRange.min}} - {{priceRange.max}}
-</label>
+</label> -->
+<label class="btn btn-block px-0 py-2" #label [ngClass]="{'active': toggle}">
+    <input type="checkbox" #priceRangeCheckbox (change)="onChange()">&nbsp;
+    <span class="text-white" style="font-size: 1.2rem;">{{priceRange.min}} - {{priceRange.max}}</span>
+    </label>

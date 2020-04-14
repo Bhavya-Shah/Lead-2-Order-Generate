@@ -14,6 +14,7 @@ export class BrandItemComponent implements OnInit, OnDestroy {
   resetCheckboxSub: Subscription;
   @Input('brand-item') brand: Brand;
   @ViewChild('brandCheckbox') brandCheckbox: ElementRef;
+  @ViewChild('label') label: ElementRef;
 
   constructor(private carService: CarService) { }
 
@@ -30,6 +31,14 @@ export class BrandItemComponent implements OnInit, OnDestroy {
       brand: this.brand,
       checkedToUnchecked: !this.brandCheckbox.nativeElement.checked
     });
+    if(this.toggle == true)
+    {
+      this.label.nativeElement.style.cssText = 'background-color: hotpink'
+    }
+    else
+    {
+      this.label.nativeElement.style.removeProperty = 'background-color'
+    }
   }
 
   ngOnDestroy(){

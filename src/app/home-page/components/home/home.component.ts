@@ -5,7 +5,6 @@ import {
   faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { take, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -119,9 +118,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  onLogout() {
-    this.authService.logout();
-  }
+  // onLogout() {
+  //   this.authService.logout();
+  // }
 
   ngOnDestroy() {
     this.userSub.unsubscribe();

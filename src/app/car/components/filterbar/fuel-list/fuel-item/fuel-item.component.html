@@ -4,6 +4,7 @@
   (change)="onChange()">
   {{fuelType.fuelType}} -->
 
+<!-- 
 <label
   class="btn btn-secondary"
   #label
@@ -13,4 +14,8 @@
     #fuelCheckbox
     (change)="onChange()">
     {{fuelType.FuelType}}
+</label> -->
+<label class="btn btn-block px-0 py-2" #label [ngClass]="{'active': toggle}">
+  <input type="checkbox" #fuelCheckbox (change)="onChange()">&nbsp;
+  <span class="text-white" style="font-size: 1.4rem;">{{fuelType.FuelType}}</span>
 </label>

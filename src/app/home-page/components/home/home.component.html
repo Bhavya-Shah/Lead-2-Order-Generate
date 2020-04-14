@@ -1,148 +1,147 @@
-<div class="animated">
-    <div class="backgroundImage position-relative" id="#">
-        <div class=" text-center w-100 position-absolute caption">
-            <h1 class="text-white">L2OG</h1>
-        </div>
+<div class="backgroundImage position-relative" id="#">
+    <div class=" text-center w-100 position-absolute caption">
+        <h1 class="text-white">L2OG</h1>
     </div>
-    <div class="container-fluid position-fixed headerBar" id="headerBar">
-        <div class="container">
-            <div class="row align-items-center py-2">
-                <!-- column for logo -->
-                <div class="col-6 col-md-2 d-flex justify-content-start">
-                    <img src="../../assets/images/jpg/car-logo.jpg" alt="logo" width="120" style="filter:brightness(70%)">
-                </div>
-                <!-- column for button -->
-                <div class="col-6 col-md-10 d-flex justify-content-end align-items-center d-lg-none">
-                    <nav class="navbar navbar-expand-lg">
-                        <button class="navbar-toggler" type="button" (click)="targetNavbarNav()">
+</div>
+<div class="container-fluid position-fixed headerBar" id="headerBar">
+    <div class="container">
+        <div class="row align-items-center py-2">
+            <!-- column for logo -->
+            <div class="col-6 col-md-2 d-flex justify-content-start">
+                <img src="../../assets/images/jpg/car-logo.jpg" alt="logo" width="120" style="filter:brightness(70%)">
+            </div>
+            <!-- column for button -->
+            <div class="col-6 col-md-10 d-flex justify-content-end align-items-center d-lg-none">
+                <nav class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" (click)="targetNavbarNav()">
                                 <fa-icon [icon]="faBars" id="changeColor"></fa-icon>
                             </button>
-                    </nav>
-                </div>
-                <!-- column for links -->
-                <div class="col-12 col-md-10 d-flex justify-content-end align-items-center alignContent">
-                    <nav class="navbar navbar-expand-lg px-0">
-                        <div class="navbar-collapse collapse" id="navbarNav">
-                            <ul class="navbar-nav">
-                                <li class="nav-item" *ngFor="let navlinks of navLinks">
-                                    <a *ngIf="navlinks.id != 'login'; else elseBlock" class="nav-link px-lg-4" href="{{navlinks.href}}" id="{{navlinks.id}}" (click)="gotoId()">{{navlinks.innerHTML}}</a>
-                                    <ng-template #elseBlock>
-                                        <a *ngIf="username" class="nav-link px-lg-4" style="cursor: pointer">Hello, {{username}}</a>
-                                        <a *ngIf="!username" class="nav-link px-lg-4" [routerLink]="['/auth/login']" routerLinkActive="active" id="{{navlinks.id}}" style="cursor: pointer">{{navlinks.innerHTML}}</a>
-                                    </ng-template>
-                                </li>
-                                <li *ngIf="username" class="nav-item">
-                                  <a class="nav-link px-lg-4" style="cursor: pointer" (click)="onLogout()">Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                </nav>
+            </div>
+            <!-- column for links -->
+            <div class="col-12 col-md-10 d-flex justify-content-end align-items-center alignContent">
+                <nav class="navbar navbar-expand-lg px-0">
+                    <div class="navbar-collapse collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item" *ngFor="let navlinks of navLinks">
+                                <a *ngIf="navlinks.id != 'login'; else elseBlock" class="nav-link px-lg-4" href="{{navlinks.href}}" id="{{navlinks.id}}" (click)="gotoId()">{{navlinks.innerHTML}}</a>
+                                <!-- <a *ngIf="navlinks.id != 'login'; else elseBlock" class="nav-link px-lg-4" href="{{navlinks.href}}" id="{{navlinks.id}}" (click)="gotoId()">{{navlinks.innerHTML}}</a> -->
+                                <ng-template #elseBlock>
+                                    <!-- <a *ngIf="username" class="nav-link px-lg-4" style="cursor: pointer">Hello, {{username}}</a> -->
+                                    <a class="nav-link px-lg-4" [routerLink]="['/auth/login']" routerLinkActive="active" id="{{navlinks.id}}" style="cursor: pointer">{{navlinks.innerHTML}}</a>
+                                </ng-template>
+                            </li>
+                            <!-- <li *ngIf="username" class="nav-item">
+                                <a class="nav-link px-lg-4" style="cursor: pointer" (click)="onLogout()">Logout</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </nav>
             </div>
         </div>
     </div>
-    <!-- Why Private Lease  -->
-    <div class="container-fluid" id="privateLease">
-        <div class="container">
-            <div class="row mb-2">
-                <div class="col-12 col-md-6 col-lg-5">
-                    <h2 class="text-white p-2">Why Private Lease?</h2>
-                </div>
+</div>
+<!-- Why Private Lease  -->
+<div class="container-fluid" id="privateLease">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-12 col-md-6 col-lg-5">
+                <h2 class="text-white p-2">Why Private Lease?</h2>
             </div>
-            <div class="row">
-                <p class="col-12">Leasing is a smart move for any business to optimise its costs on vehicle procurement and fleet management. How does leasing work? Choose the model and variant of the car your company needs. L2OG will buy the car for your company for the
-                    number of years required. And through the lifecycle L2OG takes care of it, from insurance to maintenance to breakdown assistance and resale. So you get the mobility without the hassle of owning and managing it. At the end of the tenure,
-                    simply return the car and take a new one. All this, for just a fixed monthly payout! </p>
+        </div>
+        <div class="row">
+            <p class="col-12">Leasing is a smart move for any business to optimise its costs on vehicle procurement and fleet management. How does leasing work? Choose the model and variant of the car your company needs. L2OG will buy the car for your company for the number
+                of years required. And through the lifecycle L2OG takes care of it, from insurance to maintenance to breakdown assistance and resale. So you get the mobility without the hassle of owning and managing it. At the end of the tenure, simply
+                return the car and take a new one. All this, for just a fixed monthly payout! </p>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12 col-md-4 d-flex">
+                <fa-icon [icon]="faCheckCircle" style="color: green;"></fa-icon>
+                <p class="px-2">For private, business & fleet owners</p>
             </div>
-            <div class="row mt-4">
-                <div class="col-12 col-md-4 d-flex">
-                    <fa-icon [icon]="faCheckCircle" style="color: green;"></fa-icon>
-                    <p class="px-2">For private, business & fleet owners</p>
-                </div>
-                <div class="col-12 col-md-4 d-flex">
-                    <fa-icon [icon]="faCheckCircle" style="color: green;"></fa-icon>
-                    <p class="px-2">With more than 1000+ used cars</p>
-                </div>
-                <div class="col-12 col-md-4 d-flex">
-                    <fa-icon [icon]="faCheckCircle" style="color: green;"></fa-icon>
-                    <p class="px-2">Easy car solutions that fit your needs</p>
-                </div>
+            <div class="col-12 col-md-4 d-flex">
+                <fa-icon [icon]="faCheckCircle" style="color: green;"></fa-icon>
+                <p class="px-2">With more than 1000+ used cars</p>
+            </div>
+            <div class="col-12 col-md-4 d-flex">
+                <fa-icon [icon]="faCheckCircle" style="color: green;"></fa-icon>
+                <p class="px-2">Easy car solutions that fit your needs</p>
             </div>
         </div>
     </div>
-    <div class="backgroundImage2"></div>
-    <!-- benefits -->
-    <div class="container-fluid text-white" id="benefits">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-6 benefits">
-                    <h3 class="text-dark bg-white p-2 shadow-lg rounded">The benefits of leasing</h3>
-                    <ul class="navbar-nav p-0">
-                        <li class="nav-link py-2">
-                            <fa-icon [icon]="faCheckCircle" style="color: lightgreen;"></fa-icon>
-                            &nbsp;No high purchase price</li>
-                        <li class="nav-link py-2">
-                            <fa-icon [icon]="faCheckCircle" style="color: lightgreen;"></fa-icon>
-                            &nbsp;Fixed all inclusive monthly fee</li>
-                        <li class="nav-link py-2">
-                            <fa-icon [icon]="faCheckCircle" style="color: lightgreen;"></fa-icon>
-                            &nbsp;No risks: maintenance and repair are included</li>
-                        <li class="nav-link py-2">
-                            <fa-icon [icon]="faCheckCircle" style="color: lightgreen;"></fa-icon>
-                            &nbsp;Complete online overview with My LeasePlan</li>
-                    </ul>
-                </div>
-                <div class="col-12 col-md-6 downside">
-                    <h3 class="p-2">The downside of buying a new car</h3>
-                    <ul class="navbar-nav p-0">
-                        <li class="nav-link py-2">
-                            <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
-                            &nbsp;High car depreciation 1st year</li>
-                        <li class="nav-link py-2">
-                            <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
-                            &nbsp;High purchase price</li>
-                        <li class="nav-link py-2">
-                            <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
-                            &nbsp;Unpredictable monthly costs</li>
-                    </ul>
-                </div>
+</div>
+<div class="backgroundImage2"></div>
+<!-- benefits -->
+<div class="container-fluid text-white" id="benefits">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-6 benefits">
+                <h3 class="text-dark bg-white p-2 shadow-lg rounded">The benefits of leasing</h3>
+                <ul class="navbar-nav p-0">
+                    <li class="nav-link py-2">
+                        <fa-icon [icon]="faCheckCircle" style="color: lightgreen;"></fa-icon>
+                        &nbsp;No high purchase price</li>
+                    <li class="nav-link py-2">
+                        <fa-icon [icon]="faCheckCircle" style="color: lightgreen;"></fa-icon>
+                        &nbsp;Fixed all inclusive monthly fee</li>
+                    <li class="nav-link py-2">
+                        <fa-icon [icon]="faCheckCircle" style="color: lightgreen;"></fa-icon>
+                        &nbsp;No risks: maintenance and repair are included</li>
+                    <li class="nav-link py-2">
+                        <fa-icon [icon]="faCheckCircle" style="color: lightgreen;"></fa-icon>
+                        &nbsp;Complete online overview with My LeasePlan</li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6 downside">
+                <h3 class="p-2">The downside of buying a new car</h3>
+                <ul class="navbar-nav p-0">
+                    <li class="nav-link py-2">
+                        <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
+                        &nbsp;High car depreciation 1st year</li>
+                    <li class="nav-link py-2">
+                        <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
+                        &nbsp;High purchase price</li>
+                    <li class="nav-link py-2">
+                        <fa-icon [icon]="faTimesCircle" style="color: red;"></fa-icon>
+                        &nbsp;Unpredictable monthly costs</li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="backgroundImage3"></div>
-    <!-- car we offer -->
-    <div class="container-fluid py-5">
-        <div class="row mb-5">
-            <div class="col-12 col-md-4 offset-md-4 text-center">
-                <h2 class="text-white p-2 clients">Car We Offer</h2>
-            </div>
+</div>
+<div class="backgroundImage3"></div>
+<!-- car we offer -->
+<div class="container-fluid py-5">
+    <div class="row mb-5">
+        <div class="col-12 col-md-4 offset-md-4 text-center">
+            <h2 class="text-white p-2 clients">Car We Offer</h2>
         </div>
-        <div class="row justify-content-center text-center align-items-center pb-3">
-            <div class="col-12 col-md-2 mb-3" *ngFor="let item of carlogo">
-                <img src="{{item.src}}" alt="{{item.alt}}" width="100">
+    </div>
+    <div class="row justify-content-center text-center align-items-center pb-3">
+        <div class="col-12 col-md-2 mb-3" *ngFor="let item of carlogo">
+            <img src="{{item.src}}" alt="{{item.alt}}" width="100">
+        </div>
+    </div>
+</div>
+<div class="backgroundImage4"></div>
+<!-- developers -->
+<div class="container-fluid text-white" id="developers">
+    <div class="row py-5">
+        <div class="col-12 col-md-5 col-lg-4 col-xl-3 bg-white text-dark text-center">
+            <h2>D E V E L O P E R S</h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row profilePic text-center pb-5">
+            <div class="col-12 col-md-4 mb-3" *ngFor="let item of developersPic">
+                <img src="{{item.src}}" alt="{{item.alt}}" width="150">
+                <h4 class="my-3">{{item.name}}</h4>
             </div>
         </div>
     </div>
-    <div class="backgroundImage4"></div>
-    <!-- developers -->
-    <div class="container-fluid text-white" id="developers">
-        <div class="row py-5">
-            <div class="col-12 col-md-5 col-lg-4 col-xl-3 bg-white text-dark text-center">
-                <h2>D E V E L O P E R S</h2>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row profilePic text-center pb-5">
-                <div class="col-12 col-md-4 mb-3" *ngFor="let item of developersPic">
-                    <img src="{{item.src}}" alt="{{item.alt}}" width="150">
-                    <h4 class="my-3">{{item.name}}</h4>
-                </div>
-            </div>
-        </div>
-        <div class="row pb-3">
-            <div class="col-12 col-md-4 offset-md-8 text-right">
-                &copy;Copyright 2020 - Made with <span class="text-danger">&hearts;</span>
-            </div>
+    <div class="row pb-3">
+        <div class="col-12 col-md-4 offset-md-8 text-right">
+            &copy;Copyright 2020 - Made with <span class="text-danger">&hearts;</span>
         </div>
     </div>
 </div>

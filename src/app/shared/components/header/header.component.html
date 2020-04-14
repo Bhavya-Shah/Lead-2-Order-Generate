@@ -1,0 +1,19 @@
+<div class="container-fluid animated fadeIn fast" style="background-color: #1b262c;">
+    <div class="container">
+        <div class="row align-items-center" style="height: 15vh">
+            <div class="col-4">
+                <img src="../../assets/images/jpg/car-logo.jpg" alt="logo" width="120" style="filter:invert(1)">
+            </div>
+            <div class="col-8">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-white">Hello, {{username}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" (click)="onLogout()" style="cursor: pointer;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

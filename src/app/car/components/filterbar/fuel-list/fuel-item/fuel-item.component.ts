@@ -14,6 +14,8 @@ export class FuelItemComponent implements OnInit, OnDestroy {
   resetCheckboxSub: Subscription;
   @Input('fuel-item') fuelType: Fuel;
   @ViewChild('fuelCheckbox') fuelCheckbox: ElementRef;
+  @ViewChild('label') label: ElementRef;
+
 
   constructor(private carService: CarService) { }
 
@@ -30,6 +32,14 @@ export class FuelItemComponent implements OnInit, OnDestroy {
       fuelType: this.fuelType,
       checkedToUnchecked: !this.fuelCheckbox.nativeElement.checked
     });
+    if(this.toggle == true)
+    {
+      this.label.nativeElement.style.cssText = 'background-color: hotpink'
+    }
+    else
+    {
+      this.label.nativeElement.style.removeProperty = 'background-color'
+    }
   }
 
   ngOnDestroy(){

@@ -1,5 +1,7 @@
-<app-brand-item
+<!-- <app-brand-item
   class="btn-group btn-group-toggle"
   *ngFor="let brand of brands"
   [brand-item]="brand">
+</app-brand-item> -->
+<app-brand-item class="btn-group btn-group-toggle col-6 mb-2 rounded" *ngFor="let brand of brands; let i = index" [brand-item]="brand">
 </app-brand-item>
