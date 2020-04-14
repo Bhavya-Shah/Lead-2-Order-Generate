@@ -8,18 +8,23 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { ForgotPasswordComponent } from './auth/components/forgot-password/forgot-password.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { CarResolverService } from './car/services/car-resolver.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-// add a default route
-{path: '', component: HomeComponent, data: { animation: 'home' }},
-{path: 'auth', children: [
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'forgot-password', component: ForgotPasswordComponent}
-]},
-  { path: 'car',
+  // add a default route
+  { path: '', component: HomeComponent, data: { animation: 'home' } },
+  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'auth', children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent }
+    ]
+  },
+  {
+    path: 'car',
     children: [
-      { path: '', component: CarFilterComponent},
+      { path: '', component: CarFilterComponent },
       { path: ':id', component: CarDetailsComponent, resolve: [CarResolverService] }
     ],
     canActivate: [AuthGuard]
