@@ -28,6 +28,8 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { PriceRangeListComponent } from './car/components/filterbar/price-range-list/price-range-list.component';
 import { PriceRangeItemComponent } from './car/components/filterbar/price-range-list/price-range-item/price-range-item.component';
 import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.service';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.serv
     RegisterComponent,
     PriceRangeListComponent,
     PriceRangeItemComponent,
+    HeaderComponent,
+    DashboardComponent,
 
   ],
   imports: [
