@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="isShow = !isShow" [disabled]="isDisabled">
+    Select Model
+  </button>
+  <div class="dropdown-menu" [ngClass]="{'show': isShow}">
+    <a class="dropdown-item" *ngFor="let car of filteredCars">
+      <label>
+        <input type="checkbox" name="itemList" (change)="onCheckboxChanged(car,checkboxElement)" #checkboxElement>
+        <span class="cb-text">{{car.Model}}</span>
+      </label>
+    </a>
+  </div>
+</div>

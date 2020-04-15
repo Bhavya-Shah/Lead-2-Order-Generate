@@ -1,0 +1,13 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="isShow = !isShow">
+    Select Brand
+  </button>
+  <div class="dropdown-menu" [ngClass]="{'show': isShow}">
+    <a class="dropdown-item" *ngFor="let brand of brands">
+      <label>
+        <input type="checkbox" name="itemList" (change)="onCheckboxChanged(brand,checkboxElement)" #checkboxElement>
+        <span class="cb-text">{{brand.BrandName}}</span>
+      </label>
+    </a>
+  </div>
+</div>

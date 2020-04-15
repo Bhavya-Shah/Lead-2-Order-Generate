@@ -1,25 +1,23 @@
-<h3>Steps: </h3>
-<section
-  class="application-progress"
-  style="margin-left: -10%;margin-right: -10%;">
-  <div class="overlay">
-    <div class="overlay-inner">
-      <ul>
-        <li
-          class="click"
-          *ngFor="let step of steps; let i = index;">
-          <div>
-            <div class="step" [ngClass]="{'done': i === stepNo-1, 'secondary-border': i === stepNo-1}">
-              {{i+1}}
+<div class="container">
+  <h3>The steps to get a car: </h3>
+  <section class="application-progress">
+    <div class="overlay">
+      <div class="overlay-inner">
+        <ul>
+          <li class="click" *ngFor="let step of steps; let i = index;">
+            <div>
+              <div class="step" [ngClass]="{'done': i === stepNo-1}">
+                {{i+1}}
+              </div>
+              <label [ngClass]="{'done': i === stepNo-1}">{{step}}</label>
             </div>
-            <label [ngClass]="{'done': i === stepNo-1}">{{step}}</label>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="marker-container">
-    <div class="done-marker" style="margin-left: 10%; width: 0% ;"></div>
-    <div class="todo-marker" style="margin-right: 10; width: 80%;"></div>
-  </div>
-</section>
+    <div class="marker-container">
+      <div class="done-marker" style="margin-left: 8%; width: 0%;"></div>
+      <div class="todo-marker" style="margin-right: 8%; width: 84%;"></div>
+    </div>
+  </section>
+</div>

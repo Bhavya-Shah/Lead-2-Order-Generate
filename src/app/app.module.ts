@@ -29,8 +29,14 @@ import { PriceRangeListComponent } from './car/components/filterbar/price-range-
 import { PriceRangeItemComponent } from './car/components/filterbar/price-range-list/price-range-item/price-range-item.component';
 import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.service';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { StepsProgressBarComponent } from './shared/components/steps-progress-bar/steps-progress-bar.component';
+import { LayoutComponent } from './car/components/layout/layout.component';
+import { SelectCarComponent } from './car/components/select-car/select-car.component';
+import { CustomAccordionComponent } from './shared/components/custom-accordion/custom-accordion.component';
+import { BrandListDropdownComponent } from './car/components/brand-list-dropdown/brand-list-dropdown.component';
+import { ModelListDropdownComponent } from './car/components/model-list-dropdown/model-list-dropdown.component';
+import { GearboxListDropdownComponent } from './car/components/gearbox-list-dropdown/gearbox-list-dropdown.component';
+import { FuelListDropdownComponent } from './car/components/fuel-list-dropdown/fuel-list-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +60,14 @@ import { StepsProgressBarComponent } from './shared/components/steps-progress-ba
     PriceRangeListComponent,
     PriceRangeItemComponent,
     HeaderComponent,
-    DashboardComponent,
     StepsProgressBarComponent,
-
+    LayoutComponent,
+    SelectCarComponent,
+    CustomAccordionComponent,
+    BrandListDropdownComponent,
+    ModelListDropdownComponent,
+    GearboxListDropdownComponent,
+    FuelListDropdownComponent
   ],
   imports: [
     BrowserModule,

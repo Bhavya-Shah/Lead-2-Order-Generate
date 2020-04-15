@@ -9,6 +9,7 @@ export class StepsProgressBarComponent implements OnInit {
 
   @Input() stepNo: number;
   steps: string[] = [
+    'Select Vehicle',
     'Select Mileage and Payback Time',
     'Add Personal Details',
     'Add Employment Details',

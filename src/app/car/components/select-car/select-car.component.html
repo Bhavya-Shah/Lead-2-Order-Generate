@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <app-steps-progress-bar [stepNo]="1"></app-steps-progress-bar>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" style="padding: 0;">
+  <app-custom-accordion [title]="'Select your car'">
+    <div class="container" style="padding-bottom: 200px;">
+      <div class="row">
+        <div class="col-12 col-lg-3">
+          <app-brand-list-dropdown (selectedBrandsEmitter)="getSelectedBrands($event)"></app-brand-list-dropdown>
+        </div>
+        <div class="col-12 col-lg-3">
+          <app-model-list-dropdown (selectedModelsEmitter)="getSelectedModels($event)"></app-model-list-dropdown>
+        </div>
+        <div class="col-12 col-lg-3">
+          <app-gearbox-list-dropdown (selectedGearboxTypesEmitter)="getSelectedGearboxTypes($event)"></app-gearbox-list-dropdown>
+        </div>
+        <div class="col-12 col-lg-3">
+          <app-fuel-list-dropdown (selectedFuelTypesEmitter)="getSelectedFuelTypes($event)"></app-fuel-list-dropdown>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-primary" (click)="onSearch()">Search</button>
+        </div>
+      </div>
+    </div>
+  </app-custom-accordion>
+</div>

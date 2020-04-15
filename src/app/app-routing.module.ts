@@ -8,12 +8,12 @@ import { RegisterComponent } from './auth/components/register/register.component
 import { ForgotPasswordComponent } from './auth/components/forgot-password/forgot-password.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { CarResolverService } from './car/services/car-resolver.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LayoutComponent } from './car/components/layout/layout.component';
+import { SelectCarComponent } from './car/components/select-car/select-car.component';
 
 const routes: Routes = [
   // add a default route
   { path: '', component: HomeComponent, data: { animation: 'home' } },
-  { path: 'dashboard', component: DashboardComponent },
   {
     path: 'auth', children: [
       { path: 'login', component: LoginComponent },
@@ -22,9 +22,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'car',
+    path: 'car', component: LayoutComponent,
     children: [
-      { path: '', component: CarFilterComponent },
+      { path: '', component: SelectCarComponent },
+      { path: 'filter', component: CarFilterComponent, resolve: [CarResolverService]},
       { path: ':id', component: CarDetailsComponent, resolve: [CarResolverService] }
     ],
     canActivate: [AuthGuard]

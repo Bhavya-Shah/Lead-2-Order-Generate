@@ -8,14 +8,8 @@ import { CarService } from '../../services/car.service';
   styleUrls: ['./car-filter.component.sass'],
 })
 export class CarFilterComponent implements OnInit {
-  constructor(
-    private dmService: DataManagementService,
-    private carService: CarService
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
-    if (!this.carService.hasData()) {
-      this.dmService.getCarData().subscribe();
-    }
   }
 }
