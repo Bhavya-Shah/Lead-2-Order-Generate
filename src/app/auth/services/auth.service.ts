@@ -17,22 +17,22 @@ class UserEntity {
     public Username: string,
     public Email: string,
     public Password: string
-  ) {}
+  ) { }
 }
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user = new BehaviorSubject<User>(null);
-  registerApi = 'http://localhost:52778/api/auth'
-  loginApi = 'http://localhost:52778/token'
-  getPasswordApi = 'http://localhost:52778/api/auth'
+  registerApi = 'http://localhost:52778/api/auth';
+  loginApi = 'http://localhost:52778/token';
+  getPasswordApi = 'http://localhost:52778/api/auth';
   private tokenExpirationTimer: any;
 
   constructor(
     private http: HttpClient,
     private router: Router
-    ) { }
+  ) { }
 
   register(username: string, email: string, password: string) {
     const userEntity = new UserEntity(
@@ -44,7 +44,7 @@ export class AuthService {
     return this.http.post(
       this.registerApi,
       userEntity,
-      )
+    )
       .pipe(
         catchError(httpErrorResponse => {
           const errorMessage = {
@@ -125,7 +125,6 @@ export class AuthService {
       const expirationDuration =
         new Date(userData.expire_date).getTime() - new Date().getTime();
       this.autoLogout(expirationDuration);
-      // this.router.navigate(['/']);
     }
   }
 
@@ -135,7 +134,7 @@ export class AuthService {
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
-     this.router.navigate(['auth/login']);
+    this.router.navigate(['auth', 'login']);
   }
 
   autoLogout(expirationDuration: number) {
@@ -154,8 +153,8 @@ export class AuthService {
     return throwError(errorRes.error.error_description);
   }
 
-  getPassword(email){
-    console.log(email)
+  getPassword(email: string) {
+    console.log(email);
     return this.http.get(this.getPasswordApi, {
       params: new HttpParams().set('email', email)
     }).pipe(

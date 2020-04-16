@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angu
 import { Car } from '../../models/car.model';
 import { Subscription } from 'rxjs';
 import { CarService } from '../../services/car.service';
-import { Brand } from '../../models/brand.model';
+import { CarFilterService } from '../../services/car-filter.service';
 
 @Component({
   selector: 'app-model-list-dropdown',
@@ -12,75 +12,48 @@ import { Brand } from '../../models/brand.model';
 export class ModelListDropdownComponent implements OnInit, OnDestroy {
 
   @Input() isShow = false;
-  @Output() selectedModelsEmitter = new EventEmitter<Car[]>();
   cars: Car[] = [];
-  carSub: Subscription;
   filteredCars: Car[] = [];
-  selectedModels: Car[] = [];
   isDisabled = true;
-  selectedBrands: Brand[] = [];
+  carSub: Subscription;
   brandSub: Subscription;
-  private selectedBrandIds: number[] = [];
+  fuelSub: Subscription;
+  gearboxSub: Subscription;
+
   constructor(
-    private carService: CarService
+    private carService: CarService,
+    private carFilterService: CarFilterService
   ) { }
 
   ngOnInit(): void {
     this.cars = this.carService.getCars();
-    this.filterCars();
     this.carSub = this.carService.CarsChanged.subscribe(
       (cars: Car[]) => {
         this.cars = cars;
-        this.filterCars();
       }
     );
-    this.brandSub = this.carService.changedBrand.subscribe(
-      (obj: { brand: Brand; checkedToUnchecked: boolean }) => {
-        // console.log('subscribe');
+    this.brandSub = this.carFilterService.selectedBrandsChanged.subscribe(
+      () => {
         this.isDisabled = false;
-        if (obj.checkedToUnchecked) {
-          const index = this.selectedBrands.indexOf(obj.brand);
-          this.selectedBrands.splice(index, 1);
-        } else {
-          this.selectedBrands.push(obj.brand);
-        }
-        this.filterCars();
-        // console.log(this.selectedBrands);
+        this.filteredCars = this.carFilterService.filterCars();
       }
     );
-  }
-
-  filterCars() {
-    if (this.selectedBrands.length > 0) {
-      this.filteredCars = [];
-      this.cars.map(car => {
-        if (this.selectedBrandIds.includes(car.Brand.BrandId)) {
-          this.filteredCars.push(car);
-        } else {
-          this.selectedBrands.map(brand => {
-            if (car.Brand.BrandId === brand.BrandId) {
-              this.filteredCars.push(car);
-              this.selectedBrandIds.push(brand.BrandId);
-            }
-          });
-        }
-      });
-    } else {
-      this.isDisabled = true;
-      this.isShow = false;
-      // this.filteredCars = this.cars;
-    }
+    this.fuelSub = this.carFilterService.selectedFuelTypesChanged.subscribe(
+      () => {
+        this.isDisabled = false;
+        this.filteredCars = this.carFilterService.filterCars();
+      }
+    );
+    this.gearboxSub = this.carFilterService.selectedGearboxTypesChanged.subscribe(
+      () => {
+        this.isDisabled = false;
+        this.filteredCars = this.carFilterService.filterCars();
+      }
+    );
   }
 
   onCheckboxChanged(car: Car, checkboxElement: HTMLInputElement) {
-    // console.log('next');
-    if (checkboxElement.checked) {
-      this.selectedModels.push(car);
-    } else {
-      const index = this.selectedModels.indexOf(car);
-      this.selectedModels.splice(index, 1);
-    }
-    this.selectedModelsEmitter.emit(this.selectedModels.slice());
+    this.carFilterService.changeInSelectedModels(car, !checkboxElement.checked);
   }
 
   ngOnDestroy() {

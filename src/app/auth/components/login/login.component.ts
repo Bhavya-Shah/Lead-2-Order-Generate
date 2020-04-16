@@ -28,14 +28,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.authService.autoLogin();
     this.userSub = this.authService.user
       .subscribe(
         user => {
           const isAuth = !!user;
           // console.log(isAuth);
           if (isAuth) {
-            this.router.navigate(['/','dashboard']);
+            this.router.navigate(['car']);
           }
         }
       );
@@ -61,7 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.spinner.hide();
           // this.errorMessage = false
           this.errorMessage = null;
-          console.log(res);
+          this.router.navigate(['car']);
         },
         err => {
           this.spinner.hide();

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { CarService } from '../../services/car.service';
+import { CarFilterService } from '../../services/car-filter.service';
 
 @Component({
   selector: 'app-filterbar',
@@ -9,12 +9,12 @@ import { CarService } from '../../services/car.service';
 })
 export class FilterbarComponent implements OnInit {
 
-  constructor(private carService: CarService) { }
+  constructor(private carFilterService: CarFilterService) { }
 
   ngOnInit(): void {
   }
 
-  onReset(){
-    this.carService.resetAllCheckbox.next();
+  onReset() {
+    this.carFilterService.resetFilters();
   }
 }

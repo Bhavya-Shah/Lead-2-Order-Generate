@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faExclamationCircle, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.sass']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ForgotPasswordComponent implements OnInit, OnDestroy {
   faLock = faLock;
   faExclamationCircle = faExclamationCircle;
   faEnvelope = faEnvelope;
   notification = false;
   errorMessage: string = null;
+  userSub: Subscription;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -23,6 +25,16 @@ export class ForgotPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userSub = this.authService.user
+      .subscribe(
+        user => {
+          const isAuth = !!user;
+          // console.log(isAuth)
+          if (isAuth) {
+            this.router.navigate(['car']);
+          }
+        }
+      );
   }
 
   onSubmit(forgotPasswordForm: NgForm) {
@@ -41,5 +53,9 @@ export class ForgotPasswordComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 }

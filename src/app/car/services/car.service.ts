@@ -11,19 +11,6 @@ import { PaybackTime } from '../models/paybackTime.model';
 
 @Injectable({ providedIn: 'root' })
 export class CarService {
-  changedBrand = new Subject<{ brand: Brand; checkedToUnchecked: boolean }>();
-  changedFuelType = new Subject<{
-    fuelType: Fuel;
-    checkedToUnchecked: boolean;
-  }>();
-  changedGearboxType = new Subject<{
-    gearboxType: Gearbox;
-    checkedToUnchecked: boolean;
-  }>();
-  changedPriceRange = new Subject<{
-    priceRange: PriceRange;
-    checkedToUnchecked: boolean;
-  }>();
 
   BrandsChanged = new Subject<Brand[]>();
   GearboxTypesChanged = new Subject<Gearbox[]>();
@@ -33,36 +20,39 @@ export class CarService {
   PaybackTimesChanged = new Subject<PaybackTime[]>();
   CarsChanged = new Subject<Car[]>();
 
-  resetAllCheckbox = new Subject();
-
   mileages: Mileage[] = [];
   paybackTimes: PaybackTime[] = [];
   gearboxTypes: Gearbox[] = [];
+  brands: Brand[] = [];
+  fuelTypes: Fuel[] = [];
+  priceRanges: PriceRange[] = [];
+  cars: Car[] = [];
+
   // gearboxTypes: Gearbox[] = [
   //   new Gearbox(1, 'Automatic'),
   //   new Gearbox(2, 'Semi-Automatic'),
   //   new Gearbox(3, 'Manual')
   // ];
-  brands: Brand[] = [];
+
   // brands: Brand[] = [
   //   new Brand(1, 'Tesla'),
   //   new Brand(2, 'Ford'),
   //   new Brand(3, 'Audi'),
   //   new Brand(4, 'BMW')
   // ];
-  fuelTypes: Fuel[] = [];
+
   // fuelTypes: Fuel[] = [
   //   new Fuel(1, 'Petrol'),
   //   new Fuel(2, 'Diesel'),
   //   new Fuel(3, 'Electric')
   // ];
-  priceRanges: PriceRange[] = [];
+
   // priceRanges: PriceRange[] = [
   //   new PriceRange(40000, 44999),
   //   new PriceRange(45000, 49999),
   //   new PriceRange(50000, 59999)
   // ];
-  cars: Car[] = [];
+
   // cars: Car[] = [
   //   new Car(
   //     1,
@@ -164,7 +154,7 @@ export class CarService {
     return this.cars.slice();
   }
 
-  getCarById(id): Car {
+  getCarById(id: number): Car {
     let car: Car;
     this.cars.forEach((carItem) => {
       if (carItem.CarId === id) {
@@ -176,8 +166,8 @@ export class CarService {
   }
 
   calculateLease(car: Car, mileage: number = 10000, month: number = 24) {
-    const x1 = car.Price / 10 ;
-    const x2 = x1 * (( mileage / 1000 ) * 2) / 100 ;
+    const x1 = car.Price / 10;
+    const x2 = x1 * ((mileage / 1000) * 2) / 100;
     const x3 = x1 * (month / 2) / 100;
     const price = x1 + x2 - x3;
     return Number(price.toFixed(2));

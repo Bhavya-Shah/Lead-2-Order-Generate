@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angu
 import { CarService } from '../../services/car.service';
 import { Gearbox } from '../../models/gearbox.model';
 import { Subscription } from 'rxjs';
-import { Fuel } from '../../models/fuel.model';
+import { CarFilterService } from '../../services/car-filter.service';
 
 @Component({
   selector: 'app-gearbox-list-dropdown',
@@ -11,12 +11,11 @@ import { Fuel } from '../../models/fuel.model';
 })
 export class GearboxListDropdownComponent implements OnInit, OnDestroy {
   @Input() isShow = false;
-  @Output() selectedGearboxTypesEmitter = new EventEmitter<Gearbox[]>();
   gearboxTypes: Gearbox[] = [];
-  selectedGearboxTypes: Gearbox[] = [];
   gearboxSub: Subscription;
   constructor(
-    private carService: CarService
+    private carService: CarService,
+    private carFilterService: CarFilterService
   ) { }
 
   ngOnInit(): void {
@@ -29,13 +28,7 @@ export class GearboxListDropdownComponent implements OnInit, OnDestroy {
   }
 
   onCheckboxChanged(gearbox: Gearbox, checkboxElement: HTMLInputElement) {
-    if (checkboxElement.checked) {
-      this.selectedGearboxTypes.push(gearbox);
-    } else {
-      const index = this.selectedGearboxTypes.indexOf(gearbox);
-      this.selectedGearboxTypes.splice(index, 1);
-    }
-    this.selectedGearboxTypesEmitter.emit(this.selectedGearboxTypes.slice());
+    this.carFilterService.changeInSelectedGearboxType(gearbox, !checkboxElement.checked);
   }
 
   ngOnDestroy() {

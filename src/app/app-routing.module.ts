@@ -23,12 +23,12 @@ const routes: Routes = [
   },
   {
     path: 'car', component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: SelectCarComponent },
       { path: 'filter', component: CarFilterComponent, resolve: [CarResolverService]},
       { path: ':id', component: CarDetailsComponent, resolve: [CarResolverService] }
-    ],
-    canActivate: [AuthGuard]
+    ]
   }
 ];
 

@@ -25,14 +25,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.authService.autoLogin();
     this.userSub = this.authService.user
       .subscribe(
         user => {
           const isAuth = !!user;
           // console.log(isAuth)
           if (isAuth) {
-            this.router.navigate(['/']);
+            this.router.navigate(['car']);
           }
         }
       );

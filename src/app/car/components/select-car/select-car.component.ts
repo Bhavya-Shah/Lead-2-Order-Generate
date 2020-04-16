@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataManagementService } from 'src/app/shared/services/data-management.service';
-import { ActivatedRoute } from '@angular/router';
 import { CarService } from '../../services/car.service';
 import { Brand } from '../../models/brand.model';
 import { Subscription } from 'rxjs';
 import { Fuel } from '../../models/fuel.model';
 import { Gearbox } from '../../models/gearbox.model';
 import { Car } from '../../models/car.model';
+import { CarFilterService } from '../../services/car-filter.service';
 
 @Component({
   selector: 'app-select-car',
@@ -19,31 +19,44 @@ export class SelectCarComponent implements OnInit, OnDestroy {
   selectedFuelTypes: Fuel[] = [];
   selectedGearboxTypes: Gearbox[] = [];
   selectedModels: Car[] = [];
+
   brandSub: Subscription;
+  fuelTypeSub: Subscription;
+  gearboxTypeSub: Subscription;
+  modelSub: Subscription;
 
   constructor(
     private dmService: DataManagementService,
-    private router: ActivatedRoute,
-    private carService: CarService
+    private carService: CarService,
+    private carFilterService: CarFilterService
   ) {}
 
   ngOnInit(): void {
     if (!this.carService.hasData()) {
       this.dmService.getCarData().subscribe();
     }
-  }
+    this.brandSub = this.carFilterService.selectedBrandsChanged.subscribe(
+      (brands: Brand[]) => {
+        this.selectedBrands = brands;
+      }
+    );
+    this.fuelTypeSub = this.carFilterService.selectedFuelTypesChanged.subscribe(
+      (fuelTypes: Fuel[]) => {
+        this.selectedFuelTypes = fuelTypes;
+      }
+    );
 
-  getSelectedBrands(brands: Brand[]) {
-    this.selectedBrands = brands;
-  }
-  getSelectedModels(cars: Car[]) {
-    this.selectedModels = cars;
-  }
-  getSelectedGearboxTypes(gearboxTypes: Gearbox[]) {
-    this.selectedGearboxTypes = gearboxTypes;
-  }
-  getSelectedFuelTypes(fuelTypes: Fuel[]) {
-    this.selectedFuelTypes = fuelTypes;
+    this.gearboxTypeSub = this.carFilterService.selectedGearboxTypesChanged.subscribe(
+      (gearboxTypes: Gearbox[]) => {
+        this.selectedGearboxTypes = gearboxTypes;
+      }
+    );
+
+    this.modelSub = this.carFilterService.selectedModelsChanged.subscribe(
+      (cars: Car[]) => {
+        this.selectedModels = cars;
+      }
+    );
   }
 
   onSearch() {
@@ -55,6 +68,9 @@ export class SelectCarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.brandSub.unsubscribe();
+    this.fuelTypeSub.unsubscribe();
+    this.gearboxTypeSub.unsubscribe();
+    this.modelSub.unsubscribe();
   }
 
 

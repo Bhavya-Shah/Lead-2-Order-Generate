@@ -3,6 +3,7 @@ import { Brand } from '../../models/brand.model';
 import { CarService } from '../../services/car.service';
 import { DataManagementService } from 'src/app/shared/services/data-management.service';
 import { Subscription } from 'rxjs';
+import { CarFilterService } from '../../services/car-filter.service';
 
 @Component({
   selector: 'app-brand-list-dropdown',
@@ -12,13 +13,12 @@ import { Subscription } from 'rxjs';
 export class BrandListDropdownComponent implements OnInit, OnDestroy {
 
   brands: Brand[] = [];
-  selectedBrands: Brand[] = [];
   brandSub: Subscription;
   @Input() isShow = false;
-  @Output() selectedBrandsEmitter = new EventEmitter<Brand[]>();
 
   constructor(
     private carService: CarService,
+    private carFilterService: CarFilterService,
     private dmService: DataManagementService
   ) { }
 
@@ -31,18 +31,7 @@ export class BrandListDropdownComponent implements OnInit, OnDestroy {
     );
   }
   onCheckboxChanged(brand: Brand, checkboxElement: HTMLInputElement) {
-    // console.log('next');
-    if (checkboxElement.checked) {
-      this.selectedBrands.push(brand);
-    } else {
-      const index = this.selectedBrands.indexOf(brand);
-      this.selectedBrands.splice(index, 1);
-    }
-    this.selectedBrandsEmitter.emit(this.selectedBrands.slice());
-    this.carService.changedBrand.next({
-      brand,
-      checkedToUnchecked: !checkboxElement.checked
-    });
+    this.carFilterService.changeInSelectedBrand(brand, !checkboxElement.checked);
   }
   ngOnDestroy() {
     this.brandSub.unsubscribe();

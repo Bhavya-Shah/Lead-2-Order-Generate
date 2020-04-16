@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angu
 import { CarService } from '../../services/car.service';
 import { Fuel } from '../../models/fuel.model';
 import { Subscription } from 'rxjs';
+import { CarFilterService } from '../../services/car-filter.service';
 
 @Component({
   selector: 'app-fuel-list-dropdown',
@@ -11,12 +12,11 @@ import { Subscription } from 'rxjs';
 export class FuelListDropdownComponent implements OnInit, OnDestroy {
 
   @Input() isShow = false;
-  @Output() selectedFuelTypesEmitter = new EventEmitter<Fuel[]>();
   fuelTypes: Fuel[] = [];
-  selectedFuelTypes: Fuel[] = [];
   fuelSub: Subscription;
   constructor(
-    private carService: CarService
+    private carService: CarService,
+    private carFilterService: CarFilterService
   ) { }
 
   ngOnInit(): void {
@@ -28,13 +28,7 @@ export class FuelListDropdownComponent implements OnInit, OnDestroy {
     );
   }
   onCheckboxChanged(fuel: Fuel, checkboxElement: HTMLInputElement) {
-    if (checkboxElement.checked) {
-      this.selectedFuelTypes.push(fuel);
-    } else {
-      const index = this.selectedFuelTypes.indexOf(fuel);
-      this.selectedFuelTypes.splice(index, 1);
-    }
-    this.selectedFuelTypesEmitter.emit(this.selectedFuelTypes.slice());
+    this.carFilterService.changeInSelectedFuelType(fuel, !checkboxElement.checked);
   }
 
   ngOnDestroy() {

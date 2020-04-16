@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.authService.autoLogin();
     this.userSub = this.authService.user.subscribe((user) => {
       const isAuth = !!user;
       // console.log(isAuth);
@@ -118,9 +117,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  // onLogout() {
-  //   this.authService.logout();
-  // }
+  onLogout() {
+    this.authService.logout();
+  }
 
   ngOnDestroy() {
     this.userSub.unsubscribe();

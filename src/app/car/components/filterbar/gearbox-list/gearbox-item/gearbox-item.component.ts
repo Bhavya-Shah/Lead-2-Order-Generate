@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import {Subscription} from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Gearbox } from 'src/app/car/models/gearbox.model';
-import { CarService } from 'src/app/car/services/car.service';
+import { CarFilterService } from 'src/app/car/services/car-filter.service';
 
 @Component({
   selector: 'app-gearbox-item',
@@ -10,38 +10,35 @@ import { CarService } from 'src/app/car/services/car.service';
 })
 export class GearboxItemComponent implements OnInit, OnDestroy {
 
-  toggle: boolean = false;
+  toggle = false;
   resetCheckboxSub: Subscription;
   @Input('gearbox-item') gearbox: Gearbox;
   @ViewChild('gearboxCheckbox') gearboxCheckbox: ElementRef;
   @ViewChild('label') label: ElementRef;
 
-  constructor(private carService: CarService) { }
+  constructor(
+    private carFilterService: CarFilterService
+  ) { }
 
   ngOnInit(): void {
-    this.resetCheckboxSub = this.carService.resetAllCheckbox.subscribe(() => {
+    this.resetCheckboxSub = this.carFilterService.resetFilterSubject.subscribe(() => {
       this.toggle = false;
       this.gearboxCheckbox.nativeElement.checked = false;
     });
   }
 
-  onChange(){
+  onChange() {
     this.toggle = !this.toggle;
-    this.carService.changedGearboxType.next({
-      gearboxType: this.gearbox,
-      checkedToUnchecked: !this.gearboxCheckbox.nativeElement.checked
-    });
-    if(this.toggle == true)
-    {
+    this.carFilterService.changeInSelectedGearboxType(this.gearbox, !this.gearboxCheckbox.nativeElement.checked);
+
+    if (this.toggle === true) {
       this.label.nativeElement.style.cssText = 'background-color: hotpink'
-    }
-    else
-    {
+    } else {
       this.label.nativeElement.style.removeProperty = 'background-color'
     }
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.resetCheckboxSub.unsubscribe();
   }
 }
