@@ -58,7 +58,7 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  calculateImagePath() {
+  calculateImagePath(): string {
     return '../../../../assets/images/cars/' + this.car.CarId % 5 + '.jpg';
   }
 

@@ -7,6 +7,7 @@ import { Fuel } from '../../models/fuel.model';
 import { Gearbox } from '../../models/gearbox.model';
 import { Car } from '../../models/car.model';
 import { CarFilterService } from '../../services/car-filter.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-select-car',
@@ -28,12 +29,21 @@ export class SelectCarComponent implements OnInit, OnDestroy {
   constructor(
     private dmService: DataManagementService,
     private carService: CarService,
-    private carFilterService: CarFilterService
+    private carFilterService: CarFilterService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
     if (!this.carService.hasData()) {
-      this.dmService.getCarData().subscribe();
+      this.spinner.show();
+      this.dmService.getCarData().subscribe(
+        () => {
+          this.spinner.hide();
+        },
+        () => {
+          this.spinner.hide();
+        }
+      );
     }
     this.brandSub = this.carFilterService.selectedBrandsChanged.subscribe(
       (brands: Brand[]) => {
