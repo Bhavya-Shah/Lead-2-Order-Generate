@@ -24,7 +24,6 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
   paybackTimeValue: number;
   mileageOptions: Options;
   paybackTimeOptions: Options;
-  @ViewChild('leasePrice') leasePrice: ElementRef;
 
   constructor(
     private carService: CarService,
@@ -123,7 +122,7 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSliderChange() {
-    this.leasePrice.nativeElement.innerHTML = this.carService.calculateLease(this.car, this.mileageValue, this.paybackTimeValue);
+    this.car.LeasePrice = this.carService.calculateLease(this.car, this.mileageValue, this.paybackTimeValue);
   }
 
   ngOnDestroy() {

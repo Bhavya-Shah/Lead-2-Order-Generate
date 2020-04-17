@@ -27,7 +27,7 @@
                                 <a *ngIf="navlinks.id != 'login'; else elseBlock" class="nav-link px-lg-4" href="{{navlinks.href}}" id="{{navlinks.id}}" (click)="gotoId()">{{navlinks.innerHTML}}</a>
                                 <!-- <a *ngIf="navlinks.id != 'login'; else elseBlock" class="nav-link px-lg-4" href="{{navlinks.href}}" id="{{navlinks.id}}" (click)="gotoId()">{{navlinks.innerHTML}}</a> -->
                                 <ng-template #elseBlock>
-                                    <!-- <a *ngIf="username" class="nav-link px-lg-4" style="cursor: pointer">Hello, {{username}}</a> -->
+                                    <a *ngIf="username" class="nav-link px-lg-4" [routerLink]="['/car']" style="cursor: pointer">Find a Car</a>
                                     <a *ngIf="!username" class="nav-link px-lg-4" [routerLink]="['/auth/login']" routerLinkActive="active" id="{{navlinks.id}}" style="cursor: pointer">{{navlinks.innerHTML}}</a>
                                 </ng-template>
                             </li>
