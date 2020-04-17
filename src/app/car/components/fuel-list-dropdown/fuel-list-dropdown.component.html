@@ -1,13 +1,13 @@
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="isShow = !isShow">
-    Select Fuel Type
+    <button class="btn btn-secondary dropdown-toggle" type="button" (click)="isShow = !isShow">
+    Select Fuel
   </button>
-  <div class="dropdown-menu" [ngClass]="{'show': isShow}">
-    <a class="dropdown-item" *ngFor="let fuel of fuelTypes">
-      <label>
+    <div class="dropdown-menu" [ngClass]="{'show': isShow}">
+        <a class="dropdown-item" *ngFor="let fuel of fuelTypes">
+            <label>
         <input type="checkbox" name="itemList" (change)="onCheckboxChanged(fuel,checkboxElement)" #checkboxElement>
         <span class="cb-text">{{fuel.FuelType}}</span>
       </label>
-    </a>
-  </div>
+        </a>
+    </div>
 </div>

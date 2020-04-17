@@ -4,18 +4,20 @@
   (change)="onChange()">
   {{fuelType.fuelType}} -->
 
-<!-- 
-<label
-  class="btn btn-secondary"
-  #label
-  [ngClass]="{'active': toggle}">
+
+<label class="btn btn-secondary rounded-0" #label [ngClass]="{'active': toggle}">
   <input
     type="checkbox"
     #fuelCheckbox
     (change)="onChange()">
     {{fuelType.FuelType}}
-</label> -->
-<label class="btn btn-block px-0 py-2" #label [ngClass]="{'active': toggle}">
-  <input type="checkbox" #fuelCheckbox (change)="onChange()">&nbsp;
-  <span class="text-white" style="font-size: 1.4rem;">{{fuelType.FuelType}}</span>
 </label>
+
+<!-- <div class="row w-50 float-left">
+    <div class="col-12">
+        <div class="d-flex align-items-center mr-2 my-2" #label [ngClass]="{'active': toggle}">
+            <input type="checkbox" #fuelCheckbox (change)="onChange()">&nbsp;
+            <span style="font-size: 1.0rem">{{fuelType.FuelType}}</span>
+        </div>
+    </div>
+</div> -->

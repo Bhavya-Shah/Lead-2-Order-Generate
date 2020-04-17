@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { animateChild } from '@angular/animations';
 
 @Component({
   selector: 'app-custom-accordion',

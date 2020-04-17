@@ -4,18 +4,15 @@
   (change)="onChange()">
   {{gearbox.gearboxType}} -->
 
-<!-- <label
-  class="btn btn-secondary"
-  #label
-  [ngClass]="{'active': toggle}">
+<label class="btn btn-secondary rounded-0" #label [ngClass]="{'active': toggle}">
   <input
     type="checkbox"
     #gearboxCheckbox
     (change)="onChange()">
     {{gearbox.GearboxType}}
-</label> -->
-
-<label class="btn btn-block px-0 py-2" #label [ngClass]="{'active': toggle}">
-  <input type="checkbox" #gearboxCheckbox (change)="onChange()">&nbsp;
-  <span class="text-white" style="font-size: 1.4rem;">{{gearbox.GearboxType}}</span>
 </label>
+
+<!-- <label #label [ngClass]="{'active': toggle}">
+  <input type="checkbox" #gearboxCheckbox (change)="onChange()">&nbsp;
+  <span>{{gearbox.GearboxType}}</span>
+</label> -->

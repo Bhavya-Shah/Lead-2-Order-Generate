@@ -1,10 +1,4 @@
-<div class="container">
-  <div class="row">
-    <app-car-item
-      style="margin-bottom:10px;"
-      class="col-12 col-md-4"
-      *ngFor="let car of filteredCars"
-      [car-item]="car">
+<div class="row justify-content-center">
+    <app-car-item style="margin-bottom:10px;" class="col-12 col-lg-4 mb-3" style="padding:0px 8px" *ngFor="let car of filteredCars" [car-item]="car">
     </app-car-item>
-  </div>
 </div>

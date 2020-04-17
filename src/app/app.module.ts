@@ -37,6 +37,7 @@ import { BrandListDropdownComponent } from './car/components/brand-list-dropdown
 import { ModelListDropdownComponent } from './car/components/model-list-dropdown/model-list-dropdown.component';
 import { GearboxListDropdownComponent } from './car/components/gearbox-list-dropdown/gearbox-list-dropdown.component';
 import { FuelListDropdownComponent } from './car/components/fuel-list-dropdown/fuel-list-dropdown.component';
+import { PriceListDropdownComponent } from './car/components/price-list-dropdown/price-list-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { FuelListDropdownComponent } from './car/components/fuel-list-dropdown/f
     BrandListDropdownComponent,
     ModelListDropdownComponent,
     GearboxListDropdownComponent,
-    FuelListDropdownComponent
+    FuelListDropdownComponent,
+    PriceListDropdownComponent
   ],
   imports: [
     BrowserModule,

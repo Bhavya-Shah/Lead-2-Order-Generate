@@ -31,14 +31,7 @@ export class FuelItemComponent implements OnInit, OnDestroy {
   onChange() {
     this.toggle = !this.toggle;
     this.carFilterService.changeInSelectedFuelType(this.fuelType, !this.fuelCheckbox.nativeElement.checked);
-
-    if (this.toggle === true) {
-      this.label.nativeElement.style.cssText = 'background-color: hotpink'
-    } else {
-      this.label.nativeElement.style.removeProperty = 'background-color'
-    }
   }
-
   ngOnDestroy() {
     this.resetCheckboxSub.unsubscribe();
   }

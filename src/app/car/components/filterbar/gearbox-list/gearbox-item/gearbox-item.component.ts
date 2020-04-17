@@ -30,12 +30,6 @@ export class GearboxItemComponent implements OnInit, OnDestroy {
   onChange() {
     this.toggle = !this.toggle;
     this.carFilterService.changeInSelectedGearboxType(this.gearbox, !this.gearboxCheckbox.nativeElement.checked);
-
-    if (this.toggle === true) {
-      this.label.nativeElement.style.cssText = 'background-color: hotpink'
-    } else {
-      this.label.nativeElement.style.removeProperty = 'background-color'
-    }
   }
 
   ngOnDestroy() {

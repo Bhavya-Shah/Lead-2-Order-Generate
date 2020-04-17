@@ -15,6 +15,7 @@ export class CarItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log(this.car)
     this.car.LeasePrice = this.carService.calculateLease(this.car);
   }
 

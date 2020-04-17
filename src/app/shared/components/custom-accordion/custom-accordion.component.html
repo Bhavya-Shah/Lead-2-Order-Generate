@@ -1,19 +1,19 @@
 <div class="container-fluid" style="padding: 0;">
-  <div class="accordion">
-    <div class="card">
-      <div class="card-header">
-        <h2 class="container mb-0">
-          <button class="btn btn-link" type="button" (click)="onToggle()">
+    <div class="accordion">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="container mb-0">
+                    <button class="btn btn-link" style="text-decoration: none;" type="button" (click)="onToggle()">
             {{title}}
           </button>
-        </h2>
-      </div>
+                </h2>
+            </div>
 
-      <div id="collapseOne" class="collapse" [ngClass]="{'show': isShow}">
-        <div class="card-body" style="max-height: 500px;">
-          <ng-content></ng-content>
+            <div id="collapseOne" class="collapse" [ngClass]="{'show': isShow}">
+                <div class="card-body" style="max-height: 500px;">
+                    <ng-content></ng-content>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

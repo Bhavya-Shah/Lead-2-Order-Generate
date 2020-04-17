@@ -1,18 +1,23 @@
 <!-- <input #brandCheckbox type="checkbox" (change)="onChange()"> {{brand.name}} -->
 
-<!-- <label class="btn btn-secondary" #label [ngClass]="{'active': toggle}">
+<label class="btn btn-secondary rounded-0" #label [ngClass]="{'active': toggle}">
   <input
     type="checkbox"
     #brandCheckbox
     (change)="onChange()">
     {{brand.BrandName}}
-</label> -->
+</label>
 
 <!-- <label #label [ngClass]="{'active': toggle}" class="mx-3 d-flex align-items-center">
     <input style="height: 20px; width: 20px;" type="checkbox" #brandCheckbox (change)="onChange()">&nbsp;
     <span style="cursor: pointer;">{{brand.BrandName}}</span>
 </label> -->
-<label class="btn btn-block px-0 py-2" #label [ngClass]="{'active': toggle}">
-    <input type="checkbox" #brandCheckbox (change)="onChange()">
-    <span class="text-white" style="font-size: 1.4rem;">{{brand.BrandName}}</span>
-  </label>
+
+<!-- <div class="row w-50 float-left">
+    <div class="col-12">
+        <div class="d-flex align-items-center mr-2 my-2" #label [ngClass]="{'active': toggle}">
+            <input type="checkbox" #brandCheckbox (change)="onChange()">&nbsp;
+            <span style="font-size: 1.0rem;">{{brand.BrandName}}</span>
+        </div>
+    </div>
+</div> -->

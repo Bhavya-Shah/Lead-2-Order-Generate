@@ -1,32 +1,36 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <app-steps-progress-bar [stepNo]="1"></app-steps-progress-bar>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <app-steps-progress-bar [stepNo]="1"></app-steps-progress-bar>
+        </div>
     </div>
-  </div>
 </div>
 <div class="container-fluid" style="padding: 0;">
-  <app-custom-accordion [title]="'Select your car'">
-    <div class="container" style="padding-bottom: 200px;">
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-3">
-          <app-brand-list-dropdown></app-brand-list-dropdown>
+    <app-custom-accordion [title]="'Select your car'">
+        <!-- <div class="container" style="padding-bottom: 200px;"> -->
+        <div style="padding-bottom: 200px;">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-6 col-lg-2">
+                    <app-brand-list-dropdown></app-brand-list-dropdown>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2">
+                    <app-gearbox-list-dropdown></app-gearbox-list-dropdown>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2">
+                    <app-fuel-list-dropdown></app-fuel-list-dropdown>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2">
+                    <app-model-list-dropdown></app-model-list-dropdown>
+                </div>
+                <div class="col-12 col-md-6 col-lg-2">
+                    <app-price-list-dropdown></app-price-list-dropdown>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-9 offset-lg-1">
+                    <button class="btn btn-primary" (click)="onSearch()">Search</button>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-3">
-          <app-gearbox-list-dropdown></app-gearbox-list-dropdown>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-          <app-fuel-list-dropdown></app-fuel-list-dropdown>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3">
-          <app-model-list-dropdown></app-model-list-dropdown>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <button class="btn btn-primary" (click)="onSearch()">Search</button>
-        </div>
-      </div>
-    </div>
-  </app-custom-accordion>
+    </app-custom-accordion>
 </div>

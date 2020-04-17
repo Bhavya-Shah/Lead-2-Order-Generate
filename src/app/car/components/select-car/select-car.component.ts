@@ -7,6 +7,7 @@ import { Fuel } from '../../models/fuel.model';
 import { Gearbox } from '../../models/gearbox.model';
 import { Car } from '../../models/car.model';
 import { CarFilterService } from '../../services/car-filter.service';
+import { PriceRange } from '../../models/price-range.model';
 
 @Component({
   selector: 'app-select-car',
@@ -19,16 +20,18 @@ export class SelectCarComponent implements OnInit, OnDestroy {
   selectedFuelTypes: Fuel[] = [];
   selectedGearboxTypes: Gearbox[] = [];
   selectedModels: Car[] = [];
+  selectedPriceRanges: PriceRange[] = [];
 
   brandSub: Subscription;
   fuelTypeSub: Subscription;
   gearboxTypeSub: Subscription;
   modelSub: Subscription;
+  priceRanges: Subscription;
 
   constructor(
     private dmService: DataManagementService,
     private carService: CarService,
-    private carFilterService: CarFilterService
+    private carFilterService: CarFilterService,
   ) {}
 
   ngOnInit(): void {
@@ -57,13 +60,15 @@ export class SelectCarComponent implements OnInit, OnDestroy {
         this.selectedModels = cars;
       }
     );
+    this.priceRanges = this.carFilterService.selectedPriceRangesChanged.subscribe(
+      (priceRanges: PriceRange[])=>{
+        this.selectedPriceRanges = priceRanges;
+      }
+    )
   }
 
   onSearch() {
-    console.log(this.selectedBrands);
-    console.log(this.selectedFuelTypes);
-    console.log(this.selectedGearboxTypes);
-    console.log(this.selectedModels);
+
   }
 
   ngOnDestroy() {
@@ -71,6 +76,7 @@ export class SelectCarComponent implements OnInit, OnDestroy {
     this.fuelTypeSub.unsubscribe();
     this.gearboxTypeSub.unsubscribe();
     this.modelSub.unsubscribe();
+    this.priceRanges.unsubscribe();
   }
 
 

@@ -32,11 +32,11 @@ export class PriceRangeItemComponent implements OnInit, OnDestroy {
     this.toggle = !this.toggle;
     this.carFilterService.changeInSelectedPriceRanges(this.priceRange, !this.priceRangeCheckbox.nativeElement.checked);
 
-    if (this.toggle === true) {
-      this.label.nativeElement.style.cssText = 'background-color: hotpink';
-    } else {
-      this.label.nativeElement.style.removeProperty = 'background-color';
-    }
+    // if (this.toggle === true) {
+    //   this.label.nativeElement.style.cssText = 'background-color: hotpink';
+    // } else {
+    //   this.label.nativeElement.style.removeProperty = 'background-color';
+    // }
   }
 
   ngOnDestroy() {

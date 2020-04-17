@@ -32,11 +32,6 @@ export class BrandItemComponent implements OnInit, OnDestroy {
   onChange() {
     this.toggle = !this.toggle;
     this.carFilterService.changeInSelectedBrand(this.brand, !this.brandCheckbox.nativeElement.checked);
-    if (this.toggle === true) {
-      this.label.nativeElement.style.cssText = 'background-color: hotpink';
-    } else {
-      this.label.nativeElement.style.removeProperty = 'background-color';
-    }
   }
 
   ngOnDestroy() {
