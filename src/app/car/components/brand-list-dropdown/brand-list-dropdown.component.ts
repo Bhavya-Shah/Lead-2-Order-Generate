@@ -4,6 +4,7 @@ import { CarService } from '../../services/car.service';
 import { DataManagementService } from 'src/app/shared/services/data-management.service';
 import { Subscription } from 'rxjs';
 import { CarFilterService } from '../../services/car-filter.service';
+import { DropdownService } from '../../services/dropdown.service';
 
 @Component({
   selector: 'app-brand-list-dropdown',
@@ -14,11 +15,13 @@ export class BrandListDropdownComponent implements OnInit, OnDestroy {
 
   brands: Brand[] = [];
   brandSub: Subscription;
+  dropdownSub: Subscription;
   @Input() isShow = false;
 
   constructor(
     private carService: CarService,
     private carFilterService: CarFilterService,
+    private dropdownService: DropdownService,
     private dmService: DataManagementService
   ) { }
 
@@ -29,12 +32,24 @@ export class BrandListDropdownComponent implements OnInit, OnDestroy {
         this.brands = brands;
       }
     );
+    this.dropdownSub = this.dropdownService.closeBrandDropdownObs.subscribe(() => {
+      this.isShow = false;
+    });
   }
+
+  onSelectBrand() {
+    this.isShow = !this.isShow;
+    if (this.isShow) {
+      this.dropdownService.openBrandDropdownOnly();
+    }
+  }
+
   onCheckboxChanged(brand: Brand, checkboxElement: HTMLInputElement) {
     this.carFilterService.changeInSelectedBrand(brand, !checkboxElement.checked);
   }
   ngOnDestroy() {
     this.brandSub.unsubscribe();
+    this.dropdownSub.unsubscribe();
   }
 
 }

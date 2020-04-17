@@ -71,7 +71,9 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
         floor,
         ceil,
         step,
-        showTicks: true
+        showTicks: true,
+        showTicksValues: true,
+        showSelectionBar: true
       };
       this.paybackTimeValue = floor;
     }
@@ -87,7 +89,9 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
         floor,
         ceil,
         step,
-        showTicks: true
+        showTicks: true,
+        showTicksValues: true,
+        showSelectionBar: true
       };
       this.mileageValue = floor;
     }
