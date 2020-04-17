@@ -1,5 +1,5 @@
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="isShow = !isShow" [disabled]="isDisabled">
+  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="onSelectModel()" [disabled]="isDisabled">
     Select Model
   </button>
   <div class="dropdown-menu" [ngClass]="{'show': isShow}">

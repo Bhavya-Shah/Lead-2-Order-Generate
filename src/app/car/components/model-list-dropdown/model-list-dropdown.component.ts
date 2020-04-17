@@ -3,6 +3,7 @@ import { Car } from '../../models/car.model';
 import { Subscription } from 'rxjs';
 import { CarService } from '../../services/car.service';
 import { CarFilterService } from '../../services/car-filter.service';
+import { DropdownService } from '../../services/dropdown.service';
 
 @Component({
   selector: 'app-model-list-dropdown',
@@ -19,10 +20,12 @@ export class ModelListDropdownComponent implements OnInit, OnDestroy {
   brandSub: Subscription;
   fuelSub: Subscription;
   gearboxSub: Subscription;
+  dropdownSub: Subscription;
 
   constructor(
     private carService: CarService,
-    private carFilterService: CarFilterService
+    private carFilterService: CarFilterService,
+    private dropdownService: DropdownService
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +53,16 @@ export class ModelListDropdownComponent implements OnInit, OnDestroy {
         this.filteredCars = this.carFilterService.filterCars();
       }
     );
+    this.dropdownSub = this.dropdownService.closeModelDropdownObs.subscribe(() => {
+      this.isShow = false;
+    });
+  }
+
+  onSelectModel() {
+    this.isShow = !this.isShow;
+    if (this.isShow) {
+      this.dropdownService.openModelDropdownOnly();
+    }
   }
 
   onCheckboxChanged(car: Car, checkboxElement: HTMLInputElement) {
@@ -58,5 +71,6 @@ export class ModelListDropdownComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.brandSub.unsubscribe();
+    this.dropdownSub.unsubscribe();
   }
 }

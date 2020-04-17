@@ -24,7 +24,6 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
   paybackTimeValue: number;
   mileageOptions: Options;
   paybackTimeOptions: Options;
-  @ViewChild('leasePrice') leasePrice: ElementRef;
 
   constructor(
     private carService: CarService,
@@ -58,7 +57,7 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
     );
   }
 
-  calculateImagePath() {
+  calculateImagePath(): string {
     return '../../../../assets/images/cars/' + this.car.CarId % 5 + '.jpg';
   }
 
@@ -72,7 +71,9 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
         floor,
         ceil,
         step,
-        showTicks: true
+        showTicks: true,
+        showTicksValues: true,
+        showSelectionBar: true
       };
       this.paybackTimeValue = floor;
     }
@@ -88,7 +89,9 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
         floor,
         ceil,
         step,
-        showTicks: true
+        showTicks: true,
+        showTicksValues: true,
+        showSelectionBar: true
       };
       this.mileageValue = floor;
     }
@@ -123,7 +126,7 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSliderChange() {
-    this.leasePrice.nativeElement.innerHTML = this.carService.calculateLease(this.car, this.mileageValue, this.paybackTimeValue);
+    this.car.LeasePrice = this.carService.calculateLease(this.car, this.mileageValue, this.paybackTimeValue);
   }
 
   ngOnDestroy() {

@@ -3,6 +3,7 @@ import { CarService } from '../../services/car.service';
 import { Fuel } from '../../models/fuel.model';
 import { Subscription } from 'rxjs';
 import { CarFilterService } from '../../services/car-filter.service';
+import { DropdownService } from '../../services/dropdown.service';
 
 @Component({
   selector: 'app-fuel-list-dropdown',
@@ -14,9 +15,12 @@ export class FuelListDropdownComponent implements OnInit, OnDestroy {
   @Input() isShow = false;
   fuelTypes: Fuel[] = [];
   fuelSub: Subscription;
+  dropdownSub: Subscription;
+
   constructor(
     private carService: CarService,
-    private carFilterService: CarFilterService
+    private carFilterService: CarFilterService,
+    private dropdownService: DropdownService
   ) { }
 
   ngOnInit(): void {
@@ -26,13 +30,25 @@ export class FuelListDropdownComponent implements OnInit, OnDestroy {
         this.fuelTypes = fuelTypes;
       }
     );
+    this.dropdownSub = this.dropdownService.closeFuelDropdownObs.subscribe(() => {
+      this.isShow = false;
+    });
   }
+
+  onSelectFuel() {
+    this.isShow = !this.isShow;
+    if (this.isShow) {
+      this.dropdownService.openFuelDropdownOnly();
+    }
+  }
+
   onCheckboxChanged(fuel: Fuel, checkboxElement: HTMLInputElement) {
     this.carFilterService.changeInSelectedFuelType(fuel, !checkboxElement.checked);
   }
 
   ngOnDestroy() {
     this.fuelSub.unsubscribe();
+    this.dropdownSub.unsubscribe();
   }
 
 }

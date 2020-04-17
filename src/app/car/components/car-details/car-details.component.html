@@ -1,42 +1,73 @@
-<a [routerLink]="['/car']">Back to list</a>
-<h3>Name: {{car.Carname}}</h3>
-<h3>Model: {{car.Model}}</h3>
-<br>
-<img [src]="calculateImagePath()" [alt]="car.Carname" style="height: 200px;">
-<br>
-<p>Brand: {{car.Brand.BrandName}}</p>
-<p>GearBox: {{car.Gearbox.GearboxType}}</p>
-<p>FuelType: {{car.Fuel.FuelType}}</p>
-<p>Price: <span #leasePrice>{{car.LeasePrice}}</span></p>
-<div class="row">
-  <div class="col-md-2">
-    Mileage:
-  </div>
-  <div class="col-md-4">
-    <ng5-slider
-      [(value)]="mileageValue"
-      [options]="mileageOptions"
-      (valueChange)="onSliderChange()"></ng5-slider>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-2">
-    PaybackTime:
-  </div>
-  <div class="col-md-4">
-    <ng5-slider
-      [(value)]="paybackTimeValue"
-      [options]="paybackTimeOptions"
-      (valueChange)="onSliderChange()"></ng5-slider>
-  </div>
-</div>
-
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <app-steps-progress-bar [stepNo]="1"></app-steps-progress-bar>
+<section class="quote-detail" style="padding-top: 50px;">
+  <div class="row" style="margin-right: 0;margin-left: 0;">
+    <div class="quote-detail-info container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Personalize your order</h2>
+          <h3>{{car.Model}}</h3>
+          <p>name</p>
+          <ul>
+            <li>Subscription: €<span>{{car.LeasePrice}}</span> /month</li>
+            <li>Payback Time: <span>{{paybackTimeValue}}</span> months</li>
+            <li>Annual Mileage: <span>{{mileageValue}}</span> km</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row content-center">
+        <div class="img-container">
+          <img [src]="calculateImagePath()" alt="" style="width: 100%;">
+        </div>
+      </div>
+      <!-- <div class="quote-detail-application-progress">
+        <div class="row" style="margin-right: 0;margin-left: 0;">
+          <div class="col-md-12"> -->
+      <app-steps-progress-bar [stepNo]="2"></app-steps-progress-bar>
+      <!-- </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="container-fluid" style="padding: 0;">
+      <app-custom-accordion [title]="'Select Mileage & Payback Time'">
+        <div class="container">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 sub-section">
+                <div class="sub-section-heading">My Price:</div>
+                <div class="sub-section-content">€<span>{{car.LeasePrice}}</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 sub-section">
+                <div class="sub-section-heading">Payback Time(in months)</div>
+                <div class="sub-section-content">
+                  <ng5-slider [(value)]="paybackTimeValue" [options]="paybackTimeOptions"
+                    (valueChange)="onSliderChange()"></ng5-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 sub-section">
+                <div class="sub-section-heading">Mileage</div>
+                <div class="sub-section-content">
+                  <ng5-slider [(value)]="mileageValue" [options]="mileageOptions" (valueChange)="onSliderChange()">
+                  </ng5-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-custom-accordion>
     </div>
   </div>
-</div>
-
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-quote">Next Step</button>
+      </div>
+    </div>
+  </div>
+</section>
