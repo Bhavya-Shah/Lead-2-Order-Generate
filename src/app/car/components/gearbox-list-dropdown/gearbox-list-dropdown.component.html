@@ -1,13 +1,13 @@
 <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" (click)="onSelectGearbox()">
+  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="onSelectGearbox()">
     Select Gearbox
   </button>
-    <div class="dropdown-menu" [ngClass]="{'show': isShow}">
-        <a class="dropdown-item" *ngFor="let gearbox of gearboxTypes">
-            <label>
+  <div class="dropdown-menu" [ngClass]="{'show': isShow}">
+    <a class="dropdown-item" *ngFor="let gearbox of gearboxTypes">
+      <label>
         <input type="checkbox" name="itemList" (change)="onCheckboxChanged(gearbox,checkboxElement)" #checkboxElement>
         <span class="cb-text">{{gearbox.GearboxType}}</span>
       </label>
-        </a>
-    </div>
+    </a>
+  </div>
 </div>

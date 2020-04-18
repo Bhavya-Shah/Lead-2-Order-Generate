@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Brand } from 'src/app/car/models/brand.model';
 import { CarService } from '../../../services/car.service';
 import { Subscription } from 'rxjs';
+import { CarFilterService } from 'src/app/car/services/car-filter.service';
 
 @Component({
   selector: 'app-brand-list',
@@ -11,9 +12,13 @@ import { Subscription } from 'rxjs';
 export class BrandListComponent implements OnInit, OnDestroy {
 
   brands: Brand[];
+  selectedBrands: Brand[];
   brandSubscription: Subscription;
 
-  constructor(private carService: CarService) { }
+  constructor(
+    private carService: CarService,
+    private carFilterService: CarFilterService
+  ) { }
 
   ngOnInit(): void {
     this.brands = this.carService.getBrands();
@@ -21,6 +26,11 @@ export class BrandListComponent implements OnInit, OnDestroy {
       (brands: Brand[]) => {
         this.brands = brands;
       });
+    this.selectedBrands = this.carFilterService.getSelectedBrands();
+  }
+
+  checkIfSelected(brand: Brand) {
+    return this.selectedBrands.includes(brand);
   }
 
   ngOnDestroy(): void {

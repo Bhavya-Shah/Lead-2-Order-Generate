@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Gearbox } from 'src/app/car/models/gearbox.model';
 import { CarService } from '../../../services/car.service';
 import { Subscription } from 'rxjs';
+import { CarFilterService } from 'src/app/car/services/car-filter.service';
 
 @Component({
   selector: 'app-gearbox-list',
@@ -11,18 +12,28 @@ import { Subscription } from 'rxjs';
 export class GearboxListComponent implements OnInit, OnDestroy {
 
   gearboxTypes: Gearbox[];
+  selectedGearboxTypes: Gearbox[];
   gearboxSubscription: Subscription;
-  constructor(private carService: CarService) { }
+  constructor(
+    private carService: CarService,
+    private carFilterService: CarFilterService
+  ) { }
 
   ngOnInit(): void {
     this.gearboxTypes = this.carService.getGearboxTypes();
     this.gearboxSubscription = this.carService.GearboxTypesChanged.subscribe(
       (gearboxTypes: Gearbox[]) => {
         this.gearboxTypes = gearboxTypes;
-      });
+      }
+    );
+    this.selectedGearboxTypes = this.carFilterService.getSelectedGearboxTypes();
   }
 
-  ngOnDestroy(){
+  checkIfSelected(gearboxType: Gearbox) {
+    return this.selectedGearboxTypes.includes(gearboxType);
+  }
+
+  ngOnDestroy() {
     this.gearboxSubscription.unsubscribe();
   }
 

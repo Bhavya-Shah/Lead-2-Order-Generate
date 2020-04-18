@@ -1,4 +1,4 @@
-<app-fuel-item class="btn-group btn-group-toggle m-2" *ngFor="let fuelType of fuelTypes" [fuel-item]="fuelType">
+<app-fuel-item class="btn-group btn-group-toggle m-2" *ngFor="let fuelType of fuelTypes" [fuel-item]="fuelType" [isSelected]="checkIfSelected(fuelType)">
 </app-fuel-item>
 <!-- <app-fuel-item *ngFor="let fuelType of fuelTypes" [fuel-item]="fuelType">
 </app-fuel-item> -->

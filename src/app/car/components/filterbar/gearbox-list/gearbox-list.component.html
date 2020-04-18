@@ -1,4 +1,4 @@
-<app-gearbox-item class="btn-group btn-group-toggle m-2" *ngFor="let gearboxType of gearboxTypes" [gearbox-item]="gearboxType">
+<app-gearbox-item class="btn-group btn-group-toggle m-2" *ngFor="let gearboxType of gearboxTypes" [gearbox-item]="gearboxType" [isSelected]="checkIfSelected(gearboxType)">
 </app-gearbox-item>
 
 <!-- <app-gearbox-item *ngFor="let gearboxType of gearboxTypes" [gearbox-item]="gearboxType">

@@ -10,7 +10,7 @@ import { CarFilterService } from 'src/app/car/services/car-filter.service';
 })
 export class FuelItemComponent implements OnInit, OnDestroy {
 
-  toggle = false;
+  @Input() isSelected = false;
   resetCheckboxSub: Subscription;
   @Input('fuel-item') fuelType: Fuel;
   @ViewChild('fuelCheckbox') fuelCheckbox: ElementRef;
@@ -23,13 +23,13 @@ export class FuelItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.resetCheckboxSub = this.carFilterService.resetFilterSubject.subscribe(() => {
-      this.toggle = false;
+      this.isSelected = false;
       this.fuelCheckbox.nativeElement.checked = false;
     });
   }
 
   onChange() {
-    this.toggle = !this.toggle;
+    this.isSelected = !this.isSelected;
     this.carFilterService.changeInSelectedFuelType(this.fuelType, !this.fuelCheckbox.nativeElement.checked);
   }
   ngOnDestroy() {

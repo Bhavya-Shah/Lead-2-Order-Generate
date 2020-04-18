@@ -1,12 +1,12 @@
 <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" (click)="isShow = !isShow">
+    <button class="btn btn-secondary dropdown-toggle" type="button" (click)="onSelectPriceRange()">
       Select Price
     </button>
     <div class="dropdown-menu" [ngClass]="{'show': isShow}">
-        <a class="dropdown-item" *ngFor="let pricerange of priceRanges">
+        <a class="dropdown-item" *ngFor="let priceRange of priceRanges">
             <label>
-          <input type="checkbox" name="itemList" (change)="onCheckboxChanged(pricerange,checkboxElement)" #checkboxElement>
-          <span class="cb-text">&euro;{{pricerange.min}} - &euro;{{pricerange.max}}</span>
+          <input type="checkbox" name="itemList" (change)="onCheckboxChanged(priceRange,checkboxElement)" #checkboxElement>
+          <span class="cb-text">&euro;{{priceRange.min}} - &euro;{{priceRange.max}}</span>
         </label>
         </a>
     </div>

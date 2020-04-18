@@ -20,6 +20,7 @@ export class ModelListDropdownComponent implements OnInit, OnDestroy {
   brandSub: Subscription;
   fuelSub: Subscription;
   gearboxSub: Subscription;
+  priceRangeSub: Subscription;
   dropdownSub: Subscription;
 
   constructor(
@@ -53,6 +54,12 @@ export class ModelListDropdownComponent implements OnInit, OnDestroy {
         this.filteredCars = this.carFilterService.filterCars();
       }
     );
+    this.priceRangeSub = this.carFilterService.selectedPriceRangesChanged.subscribe(
+      () => {
+        this.isDisabled = false;
+        this.filteredCars = this.carFilterService.filterCars();
+      }
+    );
     this.dropdownSub = this.dropdownService.closeModelDropdownObs.subscribe(() => {
       this.isShow = false;
     });
@@ -71,6 +78,9 @@ export class ModelListDropdownComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.brandSub.unsubscribe();
+    this.gearboxSub.unsubscribe();
+    this.fuelSub.unsubscribe();
+    this.priceRangeSub.unsubscribe();
     this.dropdownSub.unsubscribe();
   }
 }

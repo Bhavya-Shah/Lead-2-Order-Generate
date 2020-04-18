@@ -10,11 +10,11 @@ import { CarFilterService } from 'src/app/car/services/car-filter.service';
 })
 export class PriceRangeItemComponent implements OnInit, OnDestroy {
 
+  @Input() isSelected = false;
   @Input() priceRange: PriceRange;
   @ViewChild('priceRangeCheckbox') priceRangeCheckbox: ElementRef;
   @ViewChild('label') label: ElementRef;
 
-  toggle = false;
   resetCheckboxSub: Subscription;
 
   constructor(
@@ -23,20 +23,14 @@ export class PriceRangeItemComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.resetCheckboxSub = this.carFilterService.resetFilterSubject.subscribe(() => {
-      this.toggle = false;
+      this.isSelected = false;
       this.priceRangeCheckbox.nativeElement.checked = false;
     });
   }
 
   onChange() {
-    this.toggle = !this.toggle;
+    this.isSelected = !this.isSelected;
     this.carFilterService.changeInSelectedPriceRanges(this.priceRange, !this.priceRangeCheckbox.nativeElement.checked);
-
-    // if (this.toggle === true) {
-    //   this.label.nativeElement.style.cssText = 'background-color: hotpink';
-    // } else {
-    //   this.label.nativeElement.style.removeProperty = 'background-color';
-    // }
   }
 
   ngOnDestroy() {

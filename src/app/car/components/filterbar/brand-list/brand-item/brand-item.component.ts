@@ -11,7 +11,7 @@ import { CarFilterService } from 'src/app/car/services/car-filter.service';
 })
 export class BrandItemComponent implements OnInit, OnDestroy {
 
-  toggle = false;
+  @Input() isSelected = false;
   resetCheckboxSub: Subscription;
   @Input('brand-item') brand: Brand;
   @ViewChild('brandCheckbox') brandCheckbox: ElementRef;
@@ -24,13 +24,13 @@ export class BrandItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.resetCheckboxSub = this.carFilterService.resetFilterSubject.subscribe(() => {
-      this.toggle = false;
+      this.isSelected = false;
       this.brandCheckbox.nativeElement.checked = false;
     });
   }
 
   onChange() {
-    this.toggle = !this.toggle;
+    this.isSelected = !this.isSelected;
     this.carFilterService.changeInSelectedBrand(this.brand, !this.brandCheckbox.nativeElement.checked);
   }
 

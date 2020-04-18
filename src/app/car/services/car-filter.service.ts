@@ -10,11 +10,11 @@ import { CarService } from './car.service';
 @Injectable({ providedIn: 'root'})
 export class CarFilterService {
 
-  selectedBrands: Brand[] = [];
-  selectedFuelTypes: Fuel[] = [];
-  selectedGearboxTypes: Gearbox[] = [];
-  selectedPriceRanges: PriceRange[] = [];
-  selectedModels: Car[] = [];
+  private selectedBrands: Brand[] = [];
+  private selectedFuelTypes: Fuel[] = [];
+  private selectedGearboxTypes: Gearbox[] = [];
+  private selectedPriceRanges: PriceRange[] = [];
+  private selectedModels: Car[] = [];
 
   selectedBrandsChanged = new Subject<Brand[]>();
   selectedFuelTypesChanged = new Subject<Fuel[]>();
@@ -28,6 +28,26 @@ export class CarFilterService {
   constructor(
     private carService: CarService
   ) {}
+
+  getSelectedBrands(): Brand[] {
+    return this.selectedBrands.slice();
+  }
+
+  getSelectedFuelTypes(): Fuel[] {
+    return this.selectedFuelTypes.slice();
+  }
+
+  getSelectedGearboxTypes(): Gearbox[] {
+    return this.selectedGearboxTypes.slice();
+  }
+
+  getSelectedPriceRange(): PriceRange[] {
+    return this.selectedPriceRanges.slice();
+  }
+
+  getSelectedModel(): Car[] {
+    return this.selectedModels.slice();
+  }
 
   changeInSelectedBrand(brand: Brand, checkedToUnchecked: boolean) {
     if (checkedToUnchecked) {
@@ -89,6 +109,11 @@ export class CarFilterService {
   }
 
   filterCars(): Car[] {
+    if (this.selectedModels.length > 0) {
+      const selectedCars = this.selectedModels.slice();
+      this.selectedModels = [];
+      return selectedCars;
+    }
     const cars = this.carService.getCars();
     this.filteredCars = cars.filter(car => {
       let brandCheck = false;
@@ -117,6 +142,8 @@ export class CarFilterService {
       let priceRangeFilter = false;
       if (this.selectedPriceRanges.length > 0) {
         for (const priceRange of this.selectedPriceRanges) {
+          const leasePrice = this.carService.calculateLease(car);
+          car.LeasePrice = leasePrice;
           if (car.LeasePrice >= priceRange.min && car.LeasePrice <= priceRange.max) {
             priceRangeFilter = true;
           }

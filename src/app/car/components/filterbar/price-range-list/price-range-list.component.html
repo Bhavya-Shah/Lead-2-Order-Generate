@@ -1,5 +1,5 @@
-<app-price-range-item class="btn-group btn-group-toggle m-2" *ngFor="let priceRange of priceRanges" [priceRange]="priceRange">
+<app-price-range-item class="btn-group btn-group-toggle m-2" *ngFor="let priceRange of priceRanges" [priceRange]="priceRange" [isSelected]="checkIfSelected(priceRange)">
 </app-price-range-item>
-<!-- 
+<!--
 <app-price-range-item *ngFor="let priceRange of priceRanges" [priceRange]="priceRange">
 </app-price-range-item> -->

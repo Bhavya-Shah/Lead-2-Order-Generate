@@ -10,7 +10,7 @@ import { CarFilterService } from 'src/app/car/services/car-filter.service';
 })
 export class GearboxItemComponent implements OnInit, OnDestroy {
 
-  toggle = false;
+  @Input() isSelected = false;
   resetCheckboxSub: Subscription;
   @Input('gearbox-item') gearbox: Gearbox;
   @ViewChild('gearboxCheckbox') gearboxCheckbox: ElementRef;
@@ -22,13 +22,13 @@ export class GearboxItemComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.resetCheckboxSub = this.carFilterService.resetFilterSubject.subscribe(() => {
-      this.toggle = false;
+      this.isSelected = false;
       this.gearboxCheckbox.nativeElement.checked = false;
     });
   }
 
   onChange() {
-    this.toggle = !this.toggle;
+    this.isSelected = !this.isSelected;
     this.carFilterService.changeInSelectedGearboxType(this.gearbox, !this.gearboxCheckbox.nativeElement.checked);
   }
 

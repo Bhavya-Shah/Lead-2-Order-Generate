@@ -14,7 +14,7 @@ export class CarListComponent implements OnInit, OnDestroy {
   cars: Car[] = [];
   filteredCars: Car[] = [];
 
-  carSubscription: Subscription;
+  // carSubscription: Subscription;
   brandSub: Subscription;
   fuelTypeSub: Subscription;
   gearboxTypeSub: Subscription;
@@ -28,13 +28,14 @@ export class CarListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.cars = this.carService.getCars();
-    this.carSubscription = this.carService.CarsChanged.subscribe(
-      (cars: Car[]) => {
-        this.cars = cars;
-        this.filteredCars = cars;
-      }
-    );
-    this.filteredCars = this.cars;
+    this.filteredCars = this.carFilterService.filterCars();
+    // this.carSubscription = this.carService.CarsChanged.subscribe(
+    //   (cars: Car[]) => {
+    //     this.cars = cars;
+    //     this.filteredCars = cars;
+    //   }
+    // );
+    // this.filteredCars = this.cars;
 
     this.brandSub = this.carFilterService.selectedBrandsChanged.subscribe(
       () => {
@@ -66,7 +67,7 @@ export class CarListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.carSubscription.unsubscribe();
+    // this.carSubscription.unsubscribe();
     this.brandSub.unsubscribe();
     this.fuelTypeSub.unsubscribe();
     this.gearboxTypeSub.unsubscribe();

@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, data: { animation: 'home' } },
   {
     path: 'auth', children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full'},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent }
@@ -25,9 +26,10 @@ const routes: Routes = [
     path: 'car', component: LayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: SelectCarComponent },
-      { path: 'filter', component: CarFilterComponent, resolve: [CarResolverService]},
-      { path: ':id', component: CarDetailsComponent, resolve: [CarResolverService] }
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: SelectCarComponent},
+      { path: 'search', component: CarFilterComponent, resolve: [CarResolverService]},
+      { path: 'detail/:id', component: CarDetailsComponent, resolve: [CarResolverService] }
     ]
   }
 ];

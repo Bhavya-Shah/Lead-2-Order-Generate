@@ -10,9 +10,9 @@ import { CarService } from 'src/app/car/services/car.service';
 export class DataManagementService {
   getCarApi = 'http://localhost:52778/api/car'
   priceRanges: PriceRange[] = [
-    new PriceRange(260, 269),
-    new PriceRange(270, 279),
-    new PriceRange(280, 289)
+    new PriceRange(400, 499),
+    new PriceRange(500, 599),
+    new PriceRange(600, 699)
   ];
 
   constructor(private http: HttpClient,
