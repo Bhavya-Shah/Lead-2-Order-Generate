@@ -8,7 +8,7 @@ import { animateChild } from '@angular/animations';
 })
 export class CustomAccordionComponent implements OnInit {
 
-  @Input() isShow = false;
+  @Input() isShow = true;
   @Input() title: string;
   constructor() { }
 

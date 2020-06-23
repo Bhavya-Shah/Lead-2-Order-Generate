@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Car } from '../../models/car.model';
 import { CarService } from '../../services/car.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Options } from 'ng5-slider';
 import { Mileage } from '../../models/mileage.model';
 import { PaybackTime } from '../../models/paybackTime.model';
@@ -27,7 +27,8 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private carService: CarService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -127,6 +128,10 @@ export class CarDetailsComponent implements OnInit, OnDestroy {
 
   onSliderChange() {
     this.car.LeasePrice = this.carService.calculateLease(this.car, this.mileageValue, this.paybackTimeValue);
+  }
+
+  onNextStep() {
+    this.router.navigate(['/user', 'personal-details']);
   }
 
   ngOnDestroy() {

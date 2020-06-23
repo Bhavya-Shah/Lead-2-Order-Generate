@@ -1,0 +1,226 @@
+<app-steps-progress-bar [stepNo]="'3'"></app-steps-progress-bar>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <form [formGroup]="personalDetailsForm" (ngSubmit)="onSubmit()">
+        <div class="form-horizontal">
+          <h4 class="mt-3">Personal Details</h4>
+          <hr />
+    
+          <div class="form-group position-relative">
+            <label for="firstname" class="control-label col-md-2"
+              >Firstname</label
+            >
+            <div class="col-md-10">
+              <input
+                type="text"
+                class="form-control"
+                name="firstname"
+                id="firstname"
+                placeholder="Enter Firstname"
+                formControlName="Firstname"
+              />
+              <fa-icon
+                *ngIf="
+                  !personalDetailsForm.get('Firstname').valid &&
+                  personalDetailsForm.get('Firstname').touched
+                "
+                [icon]="faExclamationCircle"
+                class="position-absolute"
+                style="right: 20px; top: 7px; color: red;"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-group position-relative">
+            <label for="lastname" class="control-label col-md-2"
+              >Lastname</label
+            >
+            <div class="col-md-10">
+              <input
+                type="text"
+                class="form-control"
+                name="lastname"
+                id="lastname"
+                placeholder="Enter Lastname"
+                formControlName="Lastname"
+              />
+              <fa-icon
+                *ngIf="
+                  !personalDetailsForm.get('Lastname').valid &&
+                  personalDetailsForm.get('Lastname').touched
+                "
+                [icon]="faExclamationCircle"
+                class="position-absolute"
+                style="right: 20px; top: 7px; color: red;"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-group position-relative">
+            <label for="dob" class="control-label col-md-2">DOB</label>
+            <div class="col-md-10">
+              <input
+                type="date"
+                class="form-control date"
+                name="dob"
+                id="dob"
+                placeholder="Enter date of birth"
+                formControlName="DOB"
+              />
+              <fa-icon
+                *ngIf="
+                  !personalDetailsForm.get('DOB').valid &&
+                  personalDetailsForm.get('DOB').touched
+                "
+                [icon]="faExclamationCircle"
+                class="position-absolute"
+                style="right: 20px; top: 7px; color: red;"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-group position-relative">
+            <label for="contact" class="control-label col-md-2">Contact</label>
+            <div class="col-md-10">
+              <input
+                type="text"
+                class="form-control"
+                name="contact"
+                id="contact"
+                placeholder="Enter Contact"
+                formControlName="Contact"
+              />
+              <fa-icon
+                *ngIf="
+                  !personalDetailsForm.get('Contact').valid &&
+                  personalDetailsForm.get('Contact').touched
+                "
+                [icon]="faExclamationCircle"
+                class="position-absolute"
+                style="right: 20px; top: 7px; color: red;"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-group position-relative">
+            <label for="houseno" class="control-label col-md-2">HouseNo</label>
+            <div class="col-md-10">
+              <input
+                type="number"
+                class="form-control"
+                name="houseno"
+                id="houseno"
+                placeholder="Enter HouseNo"
+                formControlName="HouseNo"
+              />
+              <fa-icon
+                *ngIf="
+                  !personalDetailsForm.get('HouseNo').valid &&
+                  personalDetailsForm.get('HouseNo').touched
+                "
+                [icon]="faExclamationCircle"
+                class="position-absolute"
+                style="right: 20px; top: 7px; color: red;"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-group position-relative">
+            <label for="street" class="control-label col-md-2">Street</label>
+            <div class="col-md-10">
+              <input
+                type="text"
+                class="form-control"
+                name="street"
+                id="street"
+                placeholder="Enter Street"
+                formControlName="Street"
+              />
+              <fa-icon
+                *ngIf="
+                  !personalDetailsForm.get('Street').valid &&
+                  personalDetailsForm.get('Street').touched
+                "
+                [icon]="faExclamationCircle"
+                class="position-absolute"
+                style="right: 20px; top: 7px; color: red;"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-group position-relative">
+            <label for="town" class="control-label col-md-2">Town</label>
+            <div class="col-md-10">
+              <input
+                type="text"
+                class="form-control"
+                name="town"
+                id="town"
+                placeholder="Enter Town"
+                formControlName="Town"
+              />
+              <fa-icon
+                *ngIf="
+                  !personalDetailsForm.get('Town').valid &&
+                  personalDetailsForm.get('Town').touched
+                "
+                [icon]="faExclamationCircle"
+                class="position-absolute"
+                style="right: 20px; top: 7px; color: red;"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-group position-relative">
+            <label for="pin" class="control-label col-md-2">PIN</label>
+            <div class="col-md-10">
+              <input
+                type="text"
+                class="form-control"
+                name="pin"
+                id="pin"
+                placeholder="Enter PIN"
+                formControlName="PIN"
+              />
+              <fa-icon
+                *ngIf="
+                  !personalDetailsForm.get('PIN').valid &&
+                  personalDetailsForm.get('PIN').touched
+                "
+                [icon]="faExclamationCircle"
+                class="position-absolute"
+                style="right: 20px; top: 7px; color: red;"
+              ></fa-icon>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="errorMessage">
+            <ul
+              class="text-danger"
+              *ngFor="let err of errorMessage"
+              style="list-style: none;"
+            >
+              <small>
+                <li>{{ err.ErrorMessage }}</li>
+              </small>
+            </ul>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <input
+                type="submit"
+                [disabled]="!personalDetailsForm.valid"
+                value="Update And Next"
+                class="btn btn-secondary"
+              />
+              <a class="btn btn-secondary" routerLink="/user/employment-details" >Next</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
