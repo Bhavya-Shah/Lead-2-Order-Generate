@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { Ng5SliderModule } from 'ng5-slider';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { FilterbarComponent } from './car/components/filterbar/filterbar.component';
@@ -30,7 +31,6 @@ import { PriceRangeItemComponent } from './car/components/filterbar/price-range-
 import { AuthInterceptorService } from './auth/interceptor/auth-interceptor.service';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { StepsProgressBarComponent } from './shared/components/steps-progress-bar/steps-progress-bar.component';
-import { LayoutComponent } from './car/components/layout/layout.component';
 import { SelectCarComponent } from './car/components/select-car/select-car.component';
 import { CustomAccordionComponent } from './shared/components/custom-accordion/custom-accordion.component';
 import { BrandListDropdownComponent } from './car/components/brand-list-dropdown/brand-list-dropdown.component';
@@ -38,6 +38,9 @@ import { ModelListDropdownComponent } from './car/components/model-list-dropdown
 import { GearboxListDropdownComponent } from './car/components/gearbox-list-dropdown/gearbox-list-dropdown.component';
 import { FuelListDropdownComponent } from './car/components/fuel-list-dropdown/fuel-list-dropdown.component';
 import { PriceListDropdownComponent } from './car/components/price-list-dropdown/price-list-dropdown.component';
+import { PersonalDetailsComponent } from './user-details/components/personal-details/personal-details.component';
+import { LayoutComponent } from './shared/components/layout/layout.component';
+import { EmploymentDetailsComponent } from './user-details/components/employment-details/employment-details.component';
 
 @NgModule({
   declarations: [
@@ -62,26 +65,30 @@ import { PriceListDropdownComponent } from './car/components/price-list-dropdown
     PriceRangeItemComponent,
     HeaderComponent,
     StepsProgressBarComponent,
-    LayoutComponent,
     SelectCarComponent,
     CustomAccordionComponent,
     BrandListDropdownComponent,
     ModelListDropdownComponent,
     GearboxListDropdownComponent,
     FuelListDropdownComponent,
-    PriceListDropdownComponent
+    PriceListDropdownComponent,
+    PersonalDetailsComponent,
+    LayoutComponent,
+    EmploymentDetailsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
     NgxSpinnerModule,
     Ng5SliderModule
   ],
   providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

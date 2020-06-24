@@ -18,13 +18,7 @@
           <img [src]="calculateImagePath()" alt="" style="width: 100%;">
         </div>
       </div>
-      <!-- <div class="quote-detail-application-progress">
-        <div class="row" style="margin-right: 0;margin-left: 0;">
-          <div class="col-md-12"> -->
       <app-steps-progress-bar [stepNo]="2"></app-steps-progress-bar>
-      <!-- </div>
-        </div>
-      </div> -->
     </div>
     <div class="container-fluid" style="padding: 0;">
       <app-custom-accordion [title]="'Select Mileage & Payback Time'">
@@ -66,7 +60,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <button class="btn btn-quote">Next Step</button>
+        <button class="btn btn-quote" (click)="onNextStep()">Next Step</button>
       </div>
     </div>
   </div>
