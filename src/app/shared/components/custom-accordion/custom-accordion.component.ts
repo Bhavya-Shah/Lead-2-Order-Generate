@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { animateChild } from '@angular/animations';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-custom-accordion',
@@ -8,7 +7,7 @@ import { animateChild } from '@angular/animations';
 })
 export class CustomAccordionComponent implements OnInit {
 
-  @Input() isShow = false;
+  @Input() isShow = true;
   @Input() title: string;
   constructor() { }
 
