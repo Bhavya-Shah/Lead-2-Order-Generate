@@ -51,8 +51,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     const username = registerForm.value.username;
     const email = registerForm.value.email;
     const password = registerForm.value.password;
+    const confirmPassword = registerForm.value.confirmPassword;
     this.spinner.show();
-    this.authService.register(username, email, password)
+    this.authService.register(username, email, password,confirmPassword)
       .subscribe(
         res => {
           this.spinner.hide();

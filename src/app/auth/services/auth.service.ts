@@ -16,7 +16,8 @@ class UserEntity {
   constructor(
     public Username: string,
     public Email: string,
-    public Password: string
+    public Password: string,
+    public confirmPassword: string
   ) { }
 }
 
@@ -34,11 +35,12 @@ export class AuthService {
     private router: Router
   ) { }
 
-  register(username: string, email: string, password: string) {
+  register(username: string, email: string, password: string, confirmPassword: string) {
     const userEntity = new UserEntity(
       username,
       email,
-      password
+      password,
+      confirmPassword
     );
     console.log(userEntity);
     return this.http.post(
